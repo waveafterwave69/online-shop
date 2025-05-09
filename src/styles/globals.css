@@ -10,6 +10,8 @@ svg * {
 
 body {
     font-family: var(--font-family);
+    background-color: var(--color-light-black);
+    color: var(--color-light-white);
 }
 
 .container {
