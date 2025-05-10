@@ -13,4 +13,8 @@ export const routesConfig = [
         page: <HomePage />,
         url: '/cart',
     },
+    {
+        page: <HomePage />,
+        url: '/categories/:id',
+    },
 ]
