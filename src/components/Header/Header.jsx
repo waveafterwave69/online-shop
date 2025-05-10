@@ -22,7 +22,6 @@ export default function Header() {
         } else {
             document.body.classList.remove('no-scroll')
         }
-
         return () => {
             document.body.classList.remove('no-scroll')
         }
@@ -42,11 +41,7 @@ export default function Header() {
                 </button>
                 {isOpen && (
                     <div className={styles.menu}>
-                        <button
-                            className={styles.close}
-                            onClick={toggleMenu}
-                            style={{ color: 'red' }}
-                        >
+                        <button className={styles.close} onClick={toggleMenu}>
                             <img src={closeImg} alt="close" />
                         </button>
                         <ul className={styles.burgerList}>
