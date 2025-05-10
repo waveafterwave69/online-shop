@@ -73,7 +73,7 @@
 @media (max-width: 768px) {
     .sidebar {
         padding: 18px 17px;
-        width: 245px;
+        width: 100%;
     }
 
     .sidebar__title {

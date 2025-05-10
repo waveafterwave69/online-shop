@@ -1,9 +1,9 @@
-import Promo from '../../components/Promo/Promo'
+import Poster from '../../components/Poster/Poster'
 
 export default function HomePage() {
     return (
         <>
-            <Promo />
+            <Poster />
         </>
     )
 }

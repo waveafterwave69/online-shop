@@ -1,0 +1,9 @@
+.poster {
+    margin-bottom: 19px;
+}
+
+.poster__row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
