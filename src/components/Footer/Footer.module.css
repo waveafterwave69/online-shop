@@ -1,0 +1,17 @@
+.footer {
+    background-color: var(--color-dark-black);
+    padding: 24px;
+    border-radius: 6px;
+}
+
+.footer__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.socials__list {
+    display: flex;
+    column-gap: 14px;
+    align-items: center;
+}

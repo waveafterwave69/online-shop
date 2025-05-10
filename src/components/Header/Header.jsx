@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router'
 import styles from './Header.module.css'
 
@@ -6,7 +7,7 @@ import avatar from '../../img/avatar.svg'
 import formSearchOmg from '../../img/search.svg'
 import heartImg from '../../img/heart.svg'
 import cartImg from '../../img/cart.svg'
-import { useState } from 'react'
+import closeImg from '../../img/close.svg'
 
 export default function Header() {
     const [isOpen, setIsOpen] = useState(false)
@@ -15,10 +16,21 @@ export default function Header() {
         setIsOpen(!isOpen)
     }
 
+    useEffect(() => {
+        if (isOpen) {
+            document.body.classList.add('no-scroll')
+        } else {
+            document.body.classList.remove('no-scroll')
+        }
+
+        return () => {
+            document.body.classList.remove('no-scroll')
+        }
+    }, [isOpen])
     return (
         <>
             {isOpen && <div className={styles.overlay}></div>}
-            <div className={styles.burgerMenu} style={{ padding: '20px 30px' }}>
+            <div className={styles.burgerMenu}>
                 <button
                     className={styles.burgerButton}
                     onClick={toggleMenu}
@@ -30,13 +42,21 @@ export default function Header() {
                 </button>
                 {isOpen && (
                     <div className={styles.menu}>
-                        <button onClick={toggleMenu} style={{ color: 'red' }}>
-                            close
+                        <button
+                            className={styles.close}
+                            onClick={toggleMenu}
+                            style={{ color: 'red' }}
+                        >
+                            <img src={closeImg} alt="close" />
                         </button>
                         <ul className={styles.burgerList}>
                             <li>
                                 <Link to="/">
-                                    <img src={headerLogoImg} alt="STUFF" />
+                                    <img
+                                        src={headerLogoImg}
+                                        className={styles.header__logo}
+                                        alt="STUFF"
+                                    />
                                 </Link>
                             </li>
                             <li>
@@ -54,12 +74,35 @@ export default function Header() {
                             </li>
                             <li>
                                 <Link to="/favorites">
-                                    <img src={heartImg} alt="favorites" />
+                                    <div
+                                        style={{
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            columnGap: '15px',
+                                        }}
+                                    >
+                                        <img src={heartImg} alt="favorites" />
+                                        <p className={styles.count__text}>
+                                            Favorites
+                                        </p>
+                                    </div>
                                 </Link>
                             </li>
                             <li className={styles.count22}>
                                 <Link to="/cart">
-                                    <img src={cartImg} alt="cart" />
+                                    <div
+                                        style={{
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            columnGap: '15px',
+                                        }}
+                                    >
+                                        <img src={cartImg} alt="cart" />
+                                        <p className={styles.count__text}>
+                                            Cart
+                                        </p>
+                                    </div>
+
                                     <span className={styles.count2}>2</span>
                                 </Link>
                             </li>
@@ -99,7 +142,7 @@ export default function Header() {
                             />
                         </div>
 
-                        <div className={styles.form__box}>da</div>
+                        {false && <div className={styles.form__box}>da</div>}
                     </form>
 
                     <ul className={styles.list}>
