@@ -54,6 +54,12 @@
     }
 }
 
+@media (max-width: 1295px) {
+    .promo {
+        width: 100%;
+    }
+}
+
 @media (max-width: 1024px) {
     .promo {
         padding: 5px 30px;

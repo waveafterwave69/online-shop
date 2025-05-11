@@ -46,6 +46,12 @@
     color: var(--color-dark-grey);
 }
 
+@media (max-width: 1295px) {
+    .sidebar {
+        width: 100%;
+    }
+}
+
 @media (max-width: 1440px) {
     .sidebar {
         margin-top: 70px;
