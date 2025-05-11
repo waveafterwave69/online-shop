@@ -30,15 +30,49 @@ export default function Header() {
         <>
             {isOpen && <div className={styles.overlay}></div>}
             <div className={styles.burgerMenu}>
-                <button
-                    className={styles.burgerButton}
-                    onClick={toggleMenu}
-                    style={{ opacity: isOpen && '0', transitionDuration: '0s' }}
+                <div
+                    style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        columnGap: '20px',
+                        opacity: isOpen && '0',
+                        transitionDuration: '0s',
+                    }}
                 >
-                    <div className={styles.burgerLine}></div>
-                    <div className={styles.burgerLine}></div>
-                    <div className={styles.burgerLine}></div>
-                </button>
+                    <form
+                        className={styles.form}
+                        style={{
+                            border: '1px solid rgba(97, 110, 116, 0.82)',
+                            borderRadius: '6px',
+                        }}
+                    >
+                        <div className={styles.form__row}>
+                            <img
+                                className={styles.form__search}
+                                src={formSearchOmg}
+                            />
+                            <input
+                                type="search"
+                                name="search"
+                                placeholder="Search for anything..."
+                                autoComplete="off"
+                                onChange={() => {}}
+                                value=""
+                            />
+                        </div>
+
+                        {false && <div className={styles.form__box}>da</div>}
+                    </form>
+                    <button
+                        className={styles.burgerButton}
+                        onClick={toggleMenu}
+                    >
+                        <div className={styles.burgerLine}></div>
+                        <div className={styles.burgerLine}></div>
+                        <div className={styles.burgerLine}></div>
+                    </button>
+                </div>
+
                 {isOpen && (
                     <div className={styles.menu}>
                         <button className={styles.close} onClick={toggleMenu}>

@@ -47,7 +47,6 @@
     margin-top: 5px;
     background-color: var(--color-dark-white);
     border-radius: 6px;
-
 }
 
 .list {
@@ -79,7 +78,7 @@
 }
 
 .burgerMenu {
-    background-color: #19191983;
+    background-color: #191919ad;
     backdrop-filter: blur(3px);
     width: 100%;
     position: fixed;
@@ -219,6 +218,13 @@
 }
 
 @media (max-width: 425px) {
+    .form__row {
+        column-gap: 10px;
+        padding: 5px 10px;
+        width: 100%;
+        font-size: 15px;
+    }
+
     .burgerButton {
         width: 30px;
         height: 30px;
