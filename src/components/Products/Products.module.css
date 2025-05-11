@@ -1,0 +1,254 @@
+.products {
+    padding: 24px 22px;
+    background-color: var(--color-dark-black);
+    border-radius: 6px;
+}
+
+.products__title {
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--color-white);
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.products__list {
+    display: flex;
+    column-gap: 20px;
+}
+
+.list__item {
+    width: 230px;
+}
+
+.products__image {
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    width: 100%;
+    height: 230px;
+}
+
+.products__wrapper {
+    background-color: var(--color-light-black);
+    padding: 8px 12px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    height: 141px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.wrapper__title {
+    color: var(--color-white);
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.wrapper__text {
+    font-weight: 500;
+    font-size: 12px;
+    color: var(--color-dark-white);
+}
+
+.wrapper__info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.price {
+    display: flex;
+    column-gap: 4px;
+    align-items: center;
+}
+
+.info__price {
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--color-dark-purple);
+}
+
+.info__oldprice {
+    font-weight: 500;
+    font-size: 13px;
+    text-decoration: line-through;
+    color: var(--color-dark-grey);
+}
+
+.info__purchases {
+    font-weight: 500;
+    font-size: 10px;
+    text-align: right;
+    color: var(--color-dark-grey);
+}
+
+@media (max-width: 1440px) {
+    .products__list {
+        flex-wrap: wrap;
+        row-gap: 20px;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .products {
+        padding: 20px 12px;
+    }
+
+    .products__title {
+        font-size: 20px;
+        margin-bottom: 24px;
+    }
+
+    .products__list {
+        column-gap: 20px;
+    }
+
+    .list__item {
+        width: 200px;
+    }
+
+    .products__image {
+        height: 200px;
+    }
+
+    .products__wrapper {
+        padding: 8px 10px;
+        height: 135px;
+    }
+
+    .wrapper__title {
+        font-size: 15px;
+        margin-bottom: 3px;
+    }
+
+    .wrapper__text {
+        font-size: 12px;
+    }
+
+    .price {
+        column-gap: 4px;
+    }
+
+    .info__price {
+        font-size: 19px;
+    }
+
+    .info__oldprice {
+        font-weight: 500;
+        font-size: 12px;
+    }
+
+    .info__purchases {
+        font-size: 10px;
+    }
+}
+
+
+@media (max-width: 425px) {
+    .products__title {
+        font-size: 19px;
+        margin-bottom: 20px;
+    }
+
+    .products__list {
+        column-gap: 10px;
+    }
+
+
+    .list__item {
+        width: 150px;
+    }
+
+
+    .products__image {
+        height: 160px;
+        width: 150px;
+    }
+
+    .products__wrapper {
+        padding: 8px 7px;
+        height: 155px;
+        width: 150px
+    }
+
+    .wrapper__title {
+        font-size: 14px;
+        margin-bottom: 3px;
+    }
+
+    .wrapper__text {
+        font-size: 12px;
+    }
+
+    .price {
+        column-gap: 3px;
+    }
+
+    .info__price {
+        font-size: 15px;
+    }
+
+    .info__oldprice {
+        font-size: 11px;
+    }
+
+    .info__purchases {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 375px) {
+    .products__title {
+        font-size: 19px;
+        margin-bottom: 20px;
+    }
+
+    .products__list {
+        column-gap: 10px;
+    }
+
+
+    .list__item {
+        width: 220px
+    }
+
+
+    .products__image {
+        height: 230px;
+        width: 220px
+    }
+
+    .products__wrapper {
+        padding: 8px 10px;
+        height: 155px;
+        width: 220px
+    }
+
+    .wrapper__title {
+        font-size: 14px;
+        margin-bottom: 3px;
+    }
+
+    .wrapper__text {
+        font-size: 12px;
+    }
+
+    .price {
+        column-gap: 3px;
+    }
+
+    .info__price {
+        font-size: 18px;
+    }
+
+    .info__oldprice {
+        font-size: 13px;
+    }
+
+    .info__purchases {
+        font-size: 10px;
+    }
+}

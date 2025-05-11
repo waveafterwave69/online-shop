@@ -7,12 +7,14 @@ import { getCategories } from './store/slices/categoriesSlice'
 
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
+import { getProducts } from './store/slices/productsSlice'
 
 function App() {
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(getCategories())
+        dispatch(getProducts())
     }, [dispatch])
 
     return (

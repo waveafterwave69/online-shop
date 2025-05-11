@@ -17,4 +17,8 @@ export const routesConfig = [
         page: <HomePage />,
         url: '/categories/:id',
     },
+    {
+        // page: <HomePage />,
+        url: '/products/:id',
+    },
 ]
