@@ -3,12 +3,13 @@ import styles from './Sidebar.module.css'
 import { useSelector } from 'react-redux'
 
 export default function Sidebar() {
-    const { list } = useSelector(({ categories }) => categories)
+    const { list, isLoading } = useSelector(({ categories }) => categories)
 
     return (
         <>
             <aside className={styles.sidebar}>
                 <h2 className={styles.sidebar__title}>CATEGORIES</h2>
+                {isLoading && <p>Loading...</p>}
                 <nav className={styles.sidebar__nav}>
                     <ul className={styles.sidebar__list}>
                         {list &&
