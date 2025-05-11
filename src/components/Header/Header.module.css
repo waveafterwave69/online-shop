@@ -135,7 +135,6 @@
     backdrop-filter: blur(3px);
 }
 
-
 .burgerList {
     display: flex;
     flex-direction: column;

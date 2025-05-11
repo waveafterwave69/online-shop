@@ -19,7 +19,6 @@
 }
 
 .row__title {
-    text-align: center;
     font-weight: 300;
     font-size: 70px;
     text-align: center;
@@ -27,7 +26,6 @@
 }
 
 .row__subtitle {
-    text-align: center;
     font-weight: 300;
     font-size: 150px;
     text-align: center;
@@ -66,12 +64,16 @@
     right: 48%;
 }
 
+
+
+
 @media (max-width: 1440px) {
     .banner {
         margin-bottom: 21px;
     }
 
     .banner__row {
+        position: static;
         justify-content: center;
         column-gap: 80px;
         align-items: center;
