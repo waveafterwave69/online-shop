@@ -8,7 +8,7 @@ export default function Poster() {
         <>
             <section className={styles.poster}>
                 <div className={styles.poster__row}>
-                    <Sidebar />
+                    <Sidebar amount={8} />
                     <Promo />
                 </div>
             </section>

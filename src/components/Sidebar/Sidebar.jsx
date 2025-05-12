@@ -2,8 +2,14 @@ import { NavLink } from 'react-router'
 import styles from './Sidebar.module.css'
 import { useSelector } from 'react-redux'
 
-export default function Sidebar() {
+export default function Sidebar({ amount }) {
     const { list, isLoading } = useSelector(({ categories }) => categories)
+
+    let products = []
+
+    if (list) {
+        products = list.filter((_, i) => i < amount)
+    }
 
     return (
         <>
@@ -12,8 +18,8 @@ export default function Sidebar() {
                 {isLoading && <p>Loading...</p>}
                 <nav className={styles.sidebar__nav}>
                     <ul className={styles.sidebar__list}>
-                        {list &&
-                            list.map(({ id, name }) => (
+                        {products &&
+                            products.map(({ id, name }) => (
                                 <li key={id} className={styles.list__item}>
                                     <NavLink
                                         className={({ isActive }) =>

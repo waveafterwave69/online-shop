@@ -1,3 +1,4 @@
+import SingleProduct from '../components/SingleProduct/SingleProduct'
 import HomePage from '../pages/HomePage/HomePage'
 
 export const routesConfig = [
@@ -14,11 +15,11 @@ export const routesConfig = [
         url: '/cart',
     },
     {
-        page: <HomePage />,
+        // page: <HomePage />,
         url: '/categories/:id',
     },
     {
-        // page: <HomePage />,
+        page: <SingleProduct />,
         url: '/products/:id',
     },
 ]
