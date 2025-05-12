@@ -16,3 +16,10 @@
     column-gap: 14px;
     align-items: center;
 }
+
+@media (max-width: 425px) {
+    .footer {
+        margin-top: 12px;
+        padding: 20px;
+    }
+}

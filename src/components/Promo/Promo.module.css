@@ -50,7 +50,7 @@
 @media (max-width: 1440px) {
     .promo {
         /* margin-top: 70px; */
-        margin-top: 20px;
+        margin-top: 21px;
     }
 }
 
@@ -140,6 +140,7 @@
 
 @media (max-width: 425px) {
     .promo {
+        margin-top: 12px;
         padding: 5px 30px;
         width: 100%;
     }

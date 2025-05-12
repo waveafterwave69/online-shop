@@ -1,9 +1,15 @@
 .poster {
-    margin-bottom: 19px;
+    margin-bottom: 21px;
 }
 
 .poster__row {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+}
+
+@media (max-width: 425px) {
+    .poster {
+        margin-bottom: 12px;
+    }
 }

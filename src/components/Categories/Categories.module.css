@@ -68,6 +68,11 @@
 
 
 @media (max-width: 425px) {
+    .categories {
+        margin-top: 12px;
+        margin-bottom: 12px;
+    }
+
     .categories__title {
         font-size: 19px;
         margin-bottom: 20px;
