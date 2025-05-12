@@ -29,6 +29,7 @@ export default function Header() {
     return (
         <>
             {isOpen && <div className={styles.overlay}></div>}
+
             <div className={styles.burgerMenu}>
                 <div
                     style={{
@@ -80,7 +81,7 @@ export default function Header() {
                         </button>
                         <ul className={styles.burgerList}>
                             <li>
-                                <Link to="/">
+                                <Link to="/" onClick={toggleMenu}>
                                     <img
                                         src={headerLogoImg}
                                         className={styles.header__logo}
@@ -89,7 +90,7 @@ export default function Header() {
                                 </Link>
                             </li>
                             <li>
-                                <Link to="/">
+                                <Link to="/" onClick={toggleMenu}>
                                     <div className={styles.user}>
                                         <img
                                             className={styles.user__avatar}
@@ -101,8 +102,24 @@ export default function Header() {
                                     </div>
                                 </Link>
                             </li>
+                            <li className={styles.count22}>
+                                <Link to="/categoriespage" onClick={toggleMenu}>
+                                    <div
+                                        style={{
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            columnGap: '15px',
+                                        }}
+                                    >
+                                        <img src={cartImg} alt="cart" />
+                                        <p className={styles.count__text}>
+                                            Categories
+                                        </p>
+                                    </div>
+                                </Link>
+                            </li>
                             <li>
-                                <Link to="/favorites">
+                                <Link to="/favorites" onClick={toggleMenu}>
                                     <div
                                         style={{
                                             display: 'flex',
@@ -118,7 +135,7 @@ export default function Header() {
                                 </Link>
                             </li>
                             <li className={styles.count22}>
-                                <Link to="/cart">
+                                <Link to="/cart" onClick={toggleMenu}>
                                     <div
                                         style={{
                                             display: 'flex',

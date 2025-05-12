@@ -49,16 +49,14 @@
 
 @media (max-width: 1440px) {
     .promo {
-        /* margin-top: 70px; */
-        margin-top: 21px;
+        margin-top: 80px;
     }
-}
 
-@media (max-width: 1295px) {
     .promo {
         width: 100%;
     }
 }
+
 
 @media (max-width: 1024px) {
     .promo {
@@ -140,7 +138,7 @@
 
 @media (max-width: 425px) {
     .promo {
-        margin-top: 12px;
+        margin-top: 75px;
         padding: 5px 30px;
         width: 100%;
     }

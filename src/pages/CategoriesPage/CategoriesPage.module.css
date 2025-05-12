@@ -2,7 +2,8 @@
     background-color: var(--color-dark-black);
     padding: 25px 24px;
     border-radius: 6px;
-    width: 345px;
+    width: 100%;
+
 }
 
 .active span {
@@ -46,11 +47,7 @@
     color: var(--color-dark-grey);
 }
 
-@media (max-width: 1440px) {
-    .sidebar {
-        display: none;
-    }
-}
+
 
 @media (max-width: 1295px) {
     .sidebar {
