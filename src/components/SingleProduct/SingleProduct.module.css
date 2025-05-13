@@ -100,22 +100,26 @@
 
 
 .button {
-    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 9px 20px;
     font-weight: 600;
     font-size: 16px;
     color: var(--color-white);
     background-color: var(--color-dark-grey);
     border-radius: 6px;
+    height: 45px;
 }
 
 .quantity {
-    position: absolute;
-    right: -3px;
-    top: -10px;
-    background-color: red;
-    border-radius: 100%;
-    padding: 5px 10px;
+    margin-left: 5px;
+    background-color: rgb(67, 38, 114);
+    border-radius: 6px;
+    padding: 5px 12px;
+    display: flex;
+    align-items: center;
+    /* margin-bottom: 10px; */
 }
 
 .button:disabled {

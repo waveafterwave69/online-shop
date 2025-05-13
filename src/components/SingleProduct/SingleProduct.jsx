@@ -143,15 +143,16 @@ export default function SingleProduct() {
                                                     ? 'Add to cart'
                                                     : 'Remove from cart'} */}
                                                 {needEl && (
-                                                    <span
+                                                    <div
                                                         className={
                                                             styles.quantity
                                                         }
                                                     >
-                                                        {needEl.quantity}
-                                                    </span>
+                                                        {needEl.quantity} шт.
+                                                    </div>
                                                 )}
                                             </button>
+
                                             <button
                                                 disabled={!currentSize}
                                                 onClick={handleFav}
