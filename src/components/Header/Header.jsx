@@ -26,6 +26,12 @@ export default function Header() {
         setIsOpen(!isOpen)
     }
 
+    const handleOverlay = () => {
+        if (isOpen) {
+            setIsOpen(false)
+        }
+    }
+
     useEffect(() => {
         if (isOpen) {
             document.body.classList.add('no-scroll')
@@ -38,7 +44,9 @@ export default function Header() {
     }, [isOpen])
     return (
         <>
-            {isOpen && <div className={styles.overlay}></div>}
+            {isOpen && (
+                <div className={styles.overlay} onClick={handleOverlay}></div>
+            )}
 
             <div className={styles.burgerMenu}>
                 <div

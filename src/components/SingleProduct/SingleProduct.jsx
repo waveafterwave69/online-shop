@@ -47,7 +47,18 @@ export default function SingleProduct() {
     }
     const {
         products: { list },
+        user,
     } = useSelector((state) => state)
+
+    console.log(user)
+
+    let needEl
+
+    user.cart.forEach((el, index) => {
+        if (el.id == id) {
+            needEl = el
+        }
+    })
 
     return (
         <>
@@ -131,6 +142,15 @@ export default function SingleProduct() {
                                                 {/* {!cart
                                                     ? 'Add to cart'
                                                     : 'Remove from cart'} */}
+                                                {needEl && (
+                                                    <span
+                                                        className={
+                                                            styles.quantity
+                                                        }
+                                                    >
+                                                        {needEl.quantity}
+                                                    </span>
+                                                )}
                                             </button>
                                             <button
                                                 disabled={!currentSize}

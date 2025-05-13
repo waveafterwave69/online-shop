@@ -100,12 +100,22 @@
 
 
 .button {
+    position: relative;
     padding: 9px 20px;
     font-weight: 600;
     font-size: 16px;
     color: var(--color-white);
     background-color: var(--color-dark-grey);
     border-radius: 6px;
+}
+
+.quantity {
+    position: absolute;
+    right: -3px;
+    top: -10px;
+    background-color: red;
+    border-radius: 100%;
+    padding: 5px 10px;
 }
 
 .button:disabled {
