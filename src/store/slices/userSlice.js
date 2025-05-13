@@ -1,0 +1,70 @@
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import axios from 'axios'
+
+// export const getCategories = createAsyncThunk(
+//     'categories/getCategories',
+//     async (_, thunkAPI) => {
+//         try {
+//             const res = await axios(
+//                 'https://api.escuelajs.co/api/v1/categories'
+//             )
+//             return res.data
+//         } catch (error) {
+//             console.log(error)
+//             return thunkAPI.rejectWithValue(err)
+//         }
+//     }
+// )
+
+const userSlice = createSlice({
+    name: 'user',
+    initialState: {
+        curretnUser: [],
+        cart: [],
+        isLoading: false,
+    },
+    reducers: {
+        addItemToCart: (state, action) => {
+            let newCart = [...state.cart]
+            const found = state.cart.find(({ id }) => id === action.payload.id)
+
+            if (found) {
+                newCart = newCart.map((item) => {
+                    return item.id === action.payload.id
+                        ? {
+                              ...item,
+                              quantity:
+                                  action.payload.quantity || item.quantity + 1,
+                          }
+                        : item
+                })
+            } else newCart.push({ ...action.payload, quantity: 1 })
+
+            state.cart = newCart
+        },
+        removeItemFromCart: (state, action) => {
+            let found = action.payload.id
+
+            state.cart = state.cart.filter((el) => {
+                return el.id !== found
+            })
+        },
+    },
+    extraReducers: (builder) => {
+        // builder.addCase(getCategories.pending, (state, action) => {
+        //     state.list = action.payload
+        //     state.isLoading = true
+        // })
+        // builder.addCase(getCategories.fulfilled, (state, action) => {
+        //     state.list = action.payload
+        //     state.isLoading = false
+        // })
+        // builder.addCase(getCategories.rejected, (state) => {
+        //     state.isLoading = false
+        // })
+    },
+})
+
+export const { addItemToCart, removeItemFromCart } = userSlice.actions
+
+export default userSlice.reducer

@@ -15,27 +15,33 @@ export default function CategoriesPage() {
     return (
         <>
             <aside className={styles.sidebar}>
-                <h2 className={styles.sidebar__title}>CATEGORIES</h2>
-                {isLoading && <p>Loading...</p>}
-                <nav className={styles.sidebar__nav}>
-                    <ul className={styles.sidebar__list}>
-                        {products &&
-                            products.map(({ id, name }) => (
-                                <li key={id} className={styles.list__item}>
-                                    <NavLink
-                                        className={({ isActive }) =>
-                                            `${isActive ? styles.active : null}`
-                                        }
-                                        to={`/categories/${id}`}
-                                    >
-                                        <span className={styles.item__text}>
-                                            {name}
-                                        </span>
-                                    </NavLink>
-                                </li>
-                            ))}
-                    </ul>
-                </nav>
+                <div>
+                    <h2 className={styles.sidebar__title}>CATEGORIES</h2>
+                    {isLoading && <p>Loading...</p>}
+                    <nav className={styles.sidebar__nav}>
+                        <ul className={styles.sidebar__list}>
+                            {products &&
+                                products.map(({ id, name }) => (
+                                    <li key={id} className={styles.list__item}>
+                                        <NavLink
+                                            className={({ isActive }) =>
+                                                `${
+                                                    isActive
+                                                        ? styles.active
+                                                        : null
+                                                }`
+                                            }
+                                            to={`/categories/${id}`}
+                                        >
+                                            <span className={styles.item__text}>
+                                                {name}
+                                            </span>
+                                        </NavLink>
+                                    </li>
+                                ))}
+                        </ul>
+                    </nav>
+                </div>
 
                 <div className={styles.sidebar__footer}>
                     <a href="#" className={styles.footer__link}>

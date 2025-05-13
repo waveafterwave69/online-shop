@@ -7,9 +7,19 @@ import avatar from '../../img/avatar.svg'
 import formSearchOmg from '../../img/search.svg'
 import heartImg from '../../img/heart.svg'
 import cartImg from '../../img/cart.svg'
+import categoryImg from '../../img/category.svg'
 import closeImg from '../../img/close.svg'
+import { useSelector } from 'react-redux'
 
 export default function Header() {
+    const { user } = useSelector((state) => state)
+
+    let totalCountOfCart = 0
+
+    user.cart.forEach((el) => {
+        totalCountOfCart += el.quantity
+    })
+
     const [isOpen, setIsOpen] = useState(false)
 
     const toggleMenu = () => {
@@ -111,7 +121,7 @@ export default function Header() {
                                             columnGap: '15px',
                                         }}
                                     >
-                                        <img src={cartImg} alt="cart" />
+                                        <img src={categoryImg} alt="cart" />
                                         <p className={styles.count__text}>
                                             Categories
                                         </p>
@@ -149,7 +159,11 @@ export default function Header() {
                                         </p>
                                     </div>
 
-                                    <span className={styles.count2}>2</span>
+                                    {totalCountOfCart > 0 && (
+                                        <span className={styles.count2}>
+                                            {totalCountOfCart}
+                                        </span>
+                                    )}
                                 </Link>
                             </li>
                         </ul>
@@ -200,7 +214,11 @@ export default function Header() {
                         <li className={styles.list__item}>
                             <Link to="/cart">
                                 <img src={cartImg} alt="cart" />
-                                <span className={styles.count}>2</span>
+                                {totalCountOfCart > 0 && (
+                                    <span className={styles.count}>
+                                        {totalCountOfCart}
+                                    </span>
+                                )}
                             </Link>
                         </li>
                     </ul>
