@@ -31,8 +31,11 @@ export default function SingleProduct() {
 
     const handleCart = () => {
         setCart(true)
-
         dispatch(addItemToCart(data))
+    }
+
+    const handleCartMinus = () => {
+        dispatch(removeItemFromCart(data))
     }
 
     const handleFav = () => {
@@ -57,6 +60,8 @@ export default function SingleProduct() {
             needEl = el
         }
     })
+
+    console.log(needEl)
 
     return (
         <>
@@ -129,7 +134,7 @@ export default function SingleProduct() {
                                         <div
                                             className={styles.content__buttons}
                                         >
-                                            {!needEl ? (
+                                            {!needEl || needEl.quantity < 1 ? (
                                                 <button
                                                     disabled={!currentSize}
                                                     onClick={handleCart}
@@ -155,6 +160,9 @@ export default function SingleProduct() {
                                                                 padding:
                                                                     '3px 5px',
                                                             }}
+                                                            onClick={
+                                                                handleCartMinus
+                                                            }
                                                         >
                                                             -
                                                         </button>

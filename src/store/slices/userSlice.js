@@ -43,11 +43,18 @@ const userSlice = createSlice({
             state.cart = newCart
         },
         removeItemFromCart: (state, action) => {
-            let found = action.payload.id
+            let newCart = [...state.cart]
 
-            state.cart = state.cart.filter((el) => {
-                return el.id !== found
+            newCart = newCart.map((item) => {
+                return item.id === action.payload.id
+                    ? {
+                          ...item,
+                          quantity: item.quantity - 1,
+                      }
+                    : item
             })
+
+            state.cart = newCart
         },
     },
     extraReducers: (builder) => {
