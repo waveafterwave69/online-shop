@@ -50,8 +50,6 @@ export default function SingleProduct() {
         user,
     } = useSelector((state) => state)
 
-    console.log(user)
-
     let needEl
 
     user.cart.forEach((el, index) => {
@@ -131,27 +129,59 @@ export default function SingleProduct() {
                                         <div
                                             className={styles.content__buttons}
                                         >
-                                            <button
-                                                disabled={!currentSize}
-                                                onClick={handleCart}
-                                                className={`${styles.button} ${
-                                                    cart && styles.active
-                                                }`}
-                                            >
-                                                Add to cart
-                                                {/* {!cart
-                                                    ? 'Add to cart'
-                                                    : 'Remove from cart'} */}
-                                                {needEl && (
+                                            {!needEl ? (
+                                                <button
+                                                    disabled={!currentSize}
+                                                    onClick={handleCart}
+                                                    className={`${
+                                                        styles.button
+                                                    } ${cart && styles.active}`}
+                                                >
+                                                    Add to cart
+                                                </button>
+                                            ) : (
+                                                <>
                                                     <div
                                                         className={
-                                                            styles.quantity
+                                                            styles.buttonPlusMinus
                                                         }
                                                     >
-                                                        {needEl.quantity} шт.
+                                                        <button
+                                                            style={{
+                                                                fontSize:
+                                                                    '26px',
+                                                                fontWeight:
+                                                                    '600',
+                                                                padding:
+                                                                    '3px 5px',
+                                                            }}
+                                                        >
+                                                            -
+                                                        </button>
+                                                        <div
+                                                            className={
+                                                                styles.quantity
+                                                            }
+                                                        >
+                                                            {needEl.quantity}{' '}
+                                                            шт.
+                                                        </div>
+                                                        <button
+                                                            onClick={handleCart}
+                                                            style={{
+                                                                fontSize:
+                                                                    '26px',
+                                                                fontWeight:
+                                                                    '600',
+                                                                padding:
+                                                                    '3px 5px',
+                                                            }}
+                                                        >
+                                                            +
+                                                        </button>
                                                     </div>
-                                                )}
-                                            </button>
+                                                </>
+                                            )}
 
                                             <button
                                                 disabled={!currentSize}

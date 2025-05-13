@@ -109,17 +109,28 @@
     color: var(--color-white);
     background-color: var(--color-dark-grey);
     border-radius: 6px;
-    height: 45px;
+    height: 35px;
 }
 
 .quantity {
     margin-left: 5px;
-    background-color: rgb(67, 38, 114);
+    background-color: var(--color-dark-purple);
     border-radius: 6px;
     padding: 5px 12px;
     display: flex;
     align-items: center;
-    /* margin-bottom: 10px; */
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.buttonPlusMinus {
+    display: flex;
+    column-gap: 5px;
+    align-items: center;
+    background-color: var(--color-dark-purple);
+    border-radius: 6px;
+    justify-content: center;
+    height: 35px;
 }
 
 .button:disabled {
