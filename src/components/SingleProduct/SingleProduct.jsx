@@ -5,15 +5,23 @@ import Products from '../Products/Products'
 import { useParams } from 'react-router'
 import { useGetProductQuery } from '../../store/api/apiSlice'
 import { useEffect, useState } from 'react'
-import { addItemToCart, removeItemFromCart } from '../../store/slices/userSlice'
+import {
+    addItemToCart,
+    addItemToFav,
+    removeItemFromCart,
+    removeItemFromFav,
+} from '../../store/slices/userSlice'
+import { getRelatedProducts } from '../../store/slices/productsSlice'
 
 const sizes = [4.5, 5, 5.5]
 
 export default function SingleProduct() {
     const dispatch = useDispatch()
-
     const { id } = useParams()
-
+    const {
+        products: { related },
+        user,
+    } = useSelector((state) => state)
     const { data, isLoading } = useGetProductQuery({ id })
 
     const [cart, setCart] = useState(false)
@@ -27,6 +35,10 @@ export default function SingleProduct() {
         setFav(false)
         setCurrentSize('')
         window.scrollTo(0, 0)
+
+        if (data) {
+            dispatch(getRelatedProducts(data.category.id))
+        }
     }, [data])
 
     const handleCart = () => {
@@ -39,7 +51,13 @@ export default function SingleProduct() {
     }
 
     const handleFav = () => {
-        setFav((prev) => !prev)
+        dispatch(addItemToFav(data))
+        setFav(true)
+    }
+
+    const handleFavMinus = () => {
+        dispatch(removeItemFromFav(data))
+        setFav(false)
     }
 
     const handleSize = (size) => {
@@ -48,20 +66,21 @@ export default function SingleProduct() {
             setCurrentSize(size)
         }
     }
-    const {
-        products: { list },
-        user,
-    } = useSelector((state) => state)
 
     let needEl
+    let needFav
 
-    user.cart.forEach((el, index) => {
+    user.cart.forEach((el) => {
         if (el.id == id) {
             needEl = el
         }
     })
 
-    console.log(needEl)
+    user.fav.forEach((el) => {
+        if (el.id == id) {
+            needFav = el
+        }
+    })
 
     return (
         <>
@@ -138,9 +157,7 @@ export default function SingleProduct() {
                                                 <button
                                                     disabled={!currentSize}
                                                     onClick={handleCart}
-                                                    className={`${
-                                                        styles.button
-                                                    } ${cart && styles.active}`}
+                                                    className={`${styles.button}`}
                                                 >
                                                     Add to cart
                                                 </button>
@@ -190,18 +207,27 @@ export default function SingleProduct() {
                                                     </div>
                                                 </>
                                             )}
-
-                                            <button
-                                                disabled={!currentSize}
-                                                onClick={handleFav}
-                                                className={`${styles.button}  ${
-                                                    fav && styles.active
-                                                }`}
-                                            >
-                                                {!fav
-                                                    ? 'Add to favorites'
-                                                    : 'Remove from favorites'}
-                                            </button>
+                                            {needFav?.fav != true ? (
+                                                <button
+                                                    disabled={!currentSize}
+                                                    onClick={handleFav}
+                                                    className={`${
+                                                        styles.button
+                                                    }  ${fav && styles.active}`}
+                                                >
+                                                    Add to favorites
+                                                </button>
+                                            ) : (
+                                                <>
+                                                    <button
+                                                        disabled={false}
+                                                        onClick={handleFavMinus}
+                                                        className={`${styles.button}  ${styles.active}`}
+                                                    >
+                                                        Remove from favorites
+                                                    </button>
+                                                </>
+                                            )}
                                         </div>
                                     </div>
                                 </div>
@@ -210,7 +236,7 @@ export default function SingleProduct() {
                     </div>
                 </section>
             </div>
-            <Products products={list} amount={5} title="Related products" />
+            <Products products={related} amount={5} title="Related products" />
         </>
     )
 }

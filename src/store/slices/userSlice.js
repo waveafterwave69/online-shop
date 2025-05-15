@@ -21,6 +21,7 @@ const userSlice = createSlice({
     initialState: {
         curretnUser: [],
         cart: [],
+        fav: [],
         isLoading: false,
     },
     reducers: {
@@ -56,6 +57,27 @@ const userSlice = createSlice({
 
             state.cart = newCart
         },
+        addItemToFav: (state, action) => {
+            let newFav = state.fav
+
+            newFav.push({ ...action.payload, fav: true })
+
+            state.fav = newFav
+        },
+        removeItemFromFav: (state, action) => {
+            let newFav = [...state.fav]
+
+            newFav = newFav.map((item) => {
+                return item.id === action.payload.id
+                    ? {
+                          ...item,
+                          fav: (item = false),
+                      }
+                    : item
+            })
+
+            state.fav = newFav
+        },
     },
     extraReducers: (builder) => {
         // builder.addCase(getCategories.pending, (state, action) => {
@@ -72,6 +94,11 @@ const userSlice = createSlice({
     },
 })
 
-export const { addItemToCart, removeItemFromCart } = userSlice.actions
+export const {
+    addItemToCart,
+    removeItemFromCart,
+    addItemToFav,
+    removeItemFromFav,
+} = userSlice.actions
 
 export default userSlice.reducer

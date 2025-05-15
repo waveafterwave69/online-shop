@@ -15,9 +15,16 @@ export default function Header() {
     const { user } = useSelector((state) => state)
 
     let totalCountOfCart = 0
+    let totalCountOfFav = 0
 
     user.cart.forEach((el) => {
         totalCountOfCart += el.quantity
+    })
+
+    user.fav.forEach((el) => {
+        if (el.fav) {
+            totalCountOfFav++
+        }
     })
 
     const [isOpen, setIsOpen] = useState(false)
@@ -136,7 +143,7 @@ export default function Header() {
                                     </div>
                                 </Link>
                             </li>
-                            <li>
+                            <li className={styles.count22}>
                                 <Link to="/favorites" onClick={toggleMenu}>
                                     <div
                                         style={{
@@ -150,6 +157,12 @@ export default function Header() {
                                             Favorites
                                         </p>
                                     </div>
+
+                                    {totalCountOfFav > 0 && (
+                                        <span className={styles.count2}>
+                                            {totalCountOfFav}
+                                        </span>
+                                    )}
                                 </Link>
                             </li>
                             <li className={styles.count22}>
@@ -217,6 +230,11 @@ export default function Header() {
                         <li className={styles.list__item}>
                             <Link to="/favorites">
                                 <img src={heartImg} alt="favorites" />
+                                {totalCountOfFav > 0 && (
+                                    <span className={styles.count2}>
+                                        {totalCountOfFav}
+                                    </span>
+                                )}
                             </Link>
                         </li>
                         <li className={styles.list__item}>

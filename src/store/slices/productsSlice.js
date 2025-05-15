@@ -19,7 +19,7 @@ const productsSlice = createSlice({
     initialState: {
         list: [],
         filtered: [],
-        // related: [],
+        related: [],
         isLoading: false,
     },
     reducers: {
@@ -27,6 +27,12 @@ const productsSlice = createSlice({
             state.filtered = state.list.filter(
                 ({ price }) => price < action.payload
             )
+        },
+        getRelatedProducts: (state, action) => {
+            const list = state.list.filter(
+                ({ category: { id } }) => id === action.payload
+            )
+            state.related = [...list].sort(() => 0.5 - Math.random())
         },
     },
     extraReducers: (builder) => {
@@ -43,6 +49,6 @@ const productsSlice = createSlice({
     },
 })
 
-export const { filterByPrice } = productsSlice.actions
+export const { filterByPrice, getRelatedProducts } = productsSlice.actions
 
 export default productsSlice.reducer

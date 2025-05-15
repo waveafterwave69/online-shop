@@ -66,6 +66,7 @@
 .params__list {
     display: flex;
     column-gap: 5px;
+    align-items: center;
 }
 
 .list__item {
