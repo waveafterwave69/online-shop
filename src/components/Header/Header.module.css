@@ -184,6 +184,18 @@
     color: var(--color-dark-white);
 }
 
+.count22:hover {
+    opacity: 0.75;
+}
+
+.user:hover {
+    opacity: 0.8;
+}
+
+.list__item:hover {
+    opacity: 0.75;
+}
+
 
 @media (max-width: 1440px) {
     .user__avatar {

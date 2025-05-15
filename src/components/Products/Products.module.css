@@ -84,6 +84,12 @@
     color: var(--color-dark-grey);
 }
 
+.list__item:hover {
+    opacity: 0.75;
+
+
+}
+
 @media (max-width: 1440px) {
     .products__list {
         flex-wrap: wrap;
