@@ -13,7 +13,7 @@ import { useSelector } from 'react-redux'
 
 export default function Header() {
     const { user } = useSelector((state) => state)
-
+    console.log('da')
     let totalCountOfCart = 0
     let totalCountOfFav = 0
 
