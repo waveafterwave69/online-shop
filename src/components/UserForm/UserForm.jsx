@@ -70,14 +70,11 @@ export default function UserForm() {
                                 placeholder="Password"
                             />
                             <button className={styles.user__button}>
-                                Sign Up
+                                Create an account
                             </button>
                         </form>
-                        <button
-                            className={styles.user__button}
-                            style={{ marginTop: '10px' }}
-                        >
-                            Log In
+                        <button className={styles.user__button__another}>
+                            I already have an account
                         </button>
                     </div>
                 </>

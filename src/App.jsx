@@ -22,6 +22,7 @@ function App() {
         <>
             <div className="container">
                 <Header />
+                <UserForm />
 
                 <Routes>
                     {routesConfig.map(({ page, url }) => (
@@ -30,7 +31,6 @@ function App() {
                 </Routes>
 
                 <Footer />
-                <UserForm />
             </div>
         </>
     )

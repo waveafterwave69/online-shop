@@ -25,7 +25,7 @@ const userSlice = createSlice({
         fav: [],
         isLoading: false,
         formType: 'signup',
-        showForm: true,
+        showForm: false,
     },
     reducers: {
         addItemToCart: (state, action) => {
