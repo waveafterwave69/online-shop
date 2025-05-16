@@ -47,8 +47,12 @@
     margin-top: 44px;
     margin-bottom: 24px;
     font-weight: 400;
-    font-size: 18px;
+    font-size: 19px;
     color: var(--color-light-white);
+}
+
+.user__close {
+    width: 28px;
 }
 
 .user__form {
@@ -118,9 +122,7 @@
         right: 20px;
     }
 
-    .user__title {
-        font-size: 18px;
-    }
+
 
     .form__item {
         border-radius: 6px;
@@ -139,7 +141,7 @@
 
 @media (max-width: 425px) {
     .user {
-        width: 250px;
+        width: 260px;
         padding: 20px 15px 20px 15px;
     }
 
@@ -148,9 +150,7 @@
         right: 20px;
     }
 
-    .user__title {
-        font-size: 18px;
-    }
+
 
     .form__item {
         padding: 8px 14px;

@@ -127,7 +127,7 @@
     position: absolute;
     top: 0px;
     right: -15px;
-    width: 400px;
+    width: 415px;
     height: 100vh;
     padding: 18px 0px 20px 50px;
     z-index: 15;
@@ -232,7 +232,7 @@
     }
 
     .menu {
-        width: 300px;
+        width: 315px;
         padding: 20px 0px 20px 35px;
     }
 
@@ -257,7 +257,7 @@
     }
 
     .menu {
-        width: 230px;
+        width: 275px;
         padding: 18px 0px 20px 20px;
     }
 
