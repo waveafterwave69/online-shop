@@ -19,7 +19,7 @@ export default function SingleProduct() {
     const dispatch = useDispatch()
     const { id } = useParams()
     const {
-        products: { related },
+        products: { related, list },
         user,
     } = useSelector((state) => state)
     const { data, isLoading } = useGetProductQuery({ id })
@@ -36,10 +36,10 @@ export default function SingleProduct() {
         setCurrentSize('')
         window.scrollTo(0, 0)
 
-        if (data) {
-            dispatch(getRelatedProducts(data.category.id))
-        }
-    }, [data])
+        if (!data || !list.length) return
+
+        dispatch(getRelatedProducts(data.category.id))
+    }, [data, dispatch, !list.length])
 
     const handleCart = () => {
         setCart(true)

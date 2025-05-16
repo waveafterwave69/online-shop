@@ -1,28 +1,31 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-// export const getCategories = createAsyncThunk(
-//     'categories/getCategories',
-//     async (_, thunkAPI) => {
-//         try {
-//             const res = await axios(
-//                 'https://api.escuelajs.co/api/v1/categories'
-//             )
-//             return res.data
-//         } catch (error) {
-//             console.log(error)
-//             return thunkAPI.rejectWithValue(err)
-//         }
-//     }
-// )
+export const createUser = createAsyncThunk(
+    'users/getCategories',
+    async (payload, thunkAPI) => {
+        try {
+            const res = await axios.post(
+                'https://api.escuelajs.co/api/v1/users',
+                payload
+            )
+            return res.data
+        } catch (error) {
+            console.log(error)
+            return thunkAPI.rejectWithValue(err)
+        }
+    }
+)
 
 const userSlice = createSlice({
     name: 'user',
     initialState: {
-        curretnUser: [],
+        curretnUser: {},
         cart: [],
         fav: [],
         isLoading: false,
+        formType: 'signup',
+        showForm: true,
     },
     reducers: {
         addItemToCart: (state, action) => {
@@ -78,19 +81,14 @@ const userSlice = createSlice({
 
             state.fav = newFav
         },
+        toggleForm: (state, action) => {
+            state.showForm = action.payload
+        },
     },
     extraReducers: (builder) => {
-        // builder.addCase(getCategories.pending, (state, action) => {
-        //     state.list = action.payload
-        //     state.isLoading = true
-        // })
-        // builder.addCase(getCategories.fulfilled, (state, action) => {
-        //     state.list = action.payload
-        //     state.isLoading = false
-        // })
-        // builder.addCase(getCategories.rejected, (state) => {
-        //     state.isLoading = false
-        // })
+        builder.addCase(createUser.fulfilled, (state, action) => {
+            state.curretnUser = action.payload
+        })
     },
 })
 
@@ -99,6 +97,7 @@ export const {
     removeItemFromCart,
     addItemToFav,
     removeItemFromFav,
+    toggleForm,
 } = userSlice.actions
 
 export default userSlice.reducer

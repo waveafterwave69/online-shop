@@ -9,9 +9,11 @@ import heartImg from '../../img/heart.svg'
 import cartImg from '../../img/cart.svg'
 import categoryImg from '../../img/category.svg'
 import closeImg from '../../img/close.svg'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { toggleForm } from '../../store/slices/userSlice'
 
 export default function Header() {
+    const dispatch = useDispatch()
     const { user } = useSelector((state) => state)
     let totalCountOfCart = 0
     let totalCountOfFav = 0
@@ -36,6 +38,10 @@ export default function Header() {
         if (isOpen) {
             setIsOpen(false)
         }
+    }
+
+    const handleClick = () => {
+        if (!user.currentUser) dispatch(toggleForm(true))
     }
 
     useEffect(() => {
@@ -114,8 +120,11 @@ export default function Header() {
                                 </Link>
                             </li>
                             <li>
-                                <Link to="/" onClick={toggleMenu}>
-                                    <div className={styles.user}>
+                                <button onClick={toggleMenu}>
+                                    <div
+                                        className={styles.user}
+                                        onClick={handleClick}
+                                    >
                                         <img
                                             className={styles.user__avatar}
                                             src={avatar}
@@ -124,7 +133,7 @@ export default function Header() {
                                             Guest
                                         </div>
                                     </div>
-                                </Link>
+                                </button>
                             </li>
                             <li className={styles.count22}>
                                 <Link to="/categoriespage" onClick={toggleMenu}>
@@ -199,12 +208,12 @@ export default function Header() {
                 </div>
 
                 <div className={styles.info}>
-                    <Link to="/">
-                        <div className={styles.user}>
+                    <button>
+                        <div className={styles.user} onClick={handleClick}>
                             <img className={styles.user__avatar} src={avatar} />
                             <div className={styles.user__name}>Guest</div>
                         </div>
-                    </Link>
+                    </button>
 
                     <form className={styles.form}>
                         <div className={styles.form__row}>

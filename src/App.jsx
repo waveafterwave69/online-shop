@@ -8,6 +8,7 @@ import { getCategories } from './store/slices/categoriesSlice'
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 import { getProducts } from './store/slices/productsSlice'
+import UserForm from './components/UserForm/UserForm'
 
 function App() {
     const dispatch = useDispatch()
@@ -29,6 +30,7 @@ function App() {
                 </Routes>
 
                 <Footer />
+                <UserForm />
             </div>
         </>
     )
