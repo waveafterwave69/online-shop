@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 export const createUser = createAsyncThunk(
-    'users/getCategories',
+    'users/createUser',
     async (payload, thunkAPI) => {
         try {
             const res = await axios.post(
@@ -20,7 +20,7 @@ export const createUser = createAsyncThunk(
 const userSlice = createSlice({
     name: 'user',
     initialState: {
-        curretnUser: {},
+        currentUser: false,
         cart: [],
         fav: [],
         isLoading: false,
@@ -87,7 +87,7 @@ const userSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(createUser.fulfilled, (state, action) => {
-            state.curretnUser = action.payload
+            state.currentUser = action.payload
         })
     },
 })

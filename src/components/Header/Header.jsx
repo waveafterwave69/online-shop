@@ -18,6 +18,8 @@ export default function Header() {
     let totalCountOfCart = 0
     let totalCountOfFav = 0
 
+    const currentUser = user.currentUser
+
     user.cart.forEach((el) => {
         totalCountOfCart += el.quantity
     })
@@ -41,7 +43,9 @@ export default function Header() {
     }
 
     const handleClick = () => {
-        if (!user.currentUser) dispatch(toggleForm(true))
+        if (!currentUser) {
+            dispatch(toggleForm(true))
+        }
     }
 
     useEffect(() => {
@@ -130,7 +134,9 @@ export default function Header() {
                                             src={avatar}
                                         />
                                         <div className={styles.user__name}>
-                                            Guest
+                                            {!currentUser
+                                                ? 'Guest'
+                                                : currentUser.name}
                                         </div>
                                     </div>
                                 </button>
@@ -211,7 +217,9 @@ export default function Header() {
                     <button>
                         <div className={styles.user} onClick={handleClick}>
                             <img className={styles.user__avatar} src={avatar} />
-                            <div className={styles.user__name}>Guest</div>
+                            <div className={styles.user__name}>
+                                {!currentUser ? 'Guest' : currentUser.name}
+                            </div>
                         </div>
                     </button>
 
@@ -245,8 +253,13 @@ export default function Header() {
                                 )}
                             </Link>
                         </li>
-                        <li className={styles.list__item}>
-                            <Link to="/cart">
+                        <li
+                            className={styles.list__item}
+                            onClick={() =>
+                                !currentUser && dispatch(toggleForm(true))
+                            }
+                        >
+                            <Link to={currentUser && '/cart'}>
                                 <img src={cartImg} alt="cart" />
                                 {totalCountOfCart > 0 && (
                                     <span className={styles.count}>

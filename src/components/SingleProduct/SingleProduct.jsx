@@ -10,6 +10,7 @@ import {
     addItemToFav,
     removeItemFromCart,
     removeItemFromFav,
+    toggleForm,
 } from '../../store/slices/userSlice'
 import { getRelatedProducts } from '../../store/slices/productsSlice'
 
@@ -29,6 +30,8 @@ export default function SingleProduct() {
     const [img, setImg] = useState(0)
     const [currentSize, setCurrentSize] = useState('')
 
+    const currentUser = user.currentUser
+
     useEffect(() => {
         setImg(0)
         setCart(false)
@@ -42,8 +45,12 @@ export default function SingleProduct() {
     }, [data, dispatch, !list.length])
 
     const handleCart = () => {
-        setCart(true)
-        dispatch(addItemToCart(data))
+        if (!currentUser) {
+            dispatch(toggleForm(true))
+        } else {
+            setCart(true)
+            dispatch(addItemToCart(data))
+        }
     }
 
     const handleCartMinus = () => {
