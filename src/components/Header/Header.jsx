@@ -10,7 +10,7 @@ import cartImg from '../../img/cart.svg'
 import categoryImg from '../../img/category.svg'
 import closeImg from '../../img/close.svg'
 import { useDispatch, useSelector } from 'react-redux'
-import { toggleForm } from '../../store/slices/userSlice'
+import { toggleForm, toggleFormType } from '../../store/slices/userSlice'
 
 export default function Header() {
     const dispatch = useDispatch()
@@ -44,6 +44,7 @@ export default function Header() {
 
     const handleClick = () => {
         if (!currentUser) {
+            dispatch(toggleFormType('signup'))
             dispatch(toggleForm(true))
         }
     }
@@ -125,20 +126,34 @@ export default function Header() {
                             </li>
                             <li>
                                 <button onClick={toggleMenu}>
-                                    <div
-                                        className={styles.user}
-                                        onClick={handleClick}
-                                    >
-                                        <img
-                                            className={styles.user__avatar}
-                                            src={avatar}
-                                        />
-                                        <div className={styles.user__name}>
-                                            {!currentUser
-                                                ? 'Guest'
-                                                : currentUser.name}
+                                    {!currentUser ? (
+                                        <div
+                                            className={styles.user}
+                                            onClick={handleClick}
+                                        >
+                                            <img
+                                                className={styles.user__avatar}
+                                                src={avatar}
+                                            />
+                                            <div className={styles.user__name}>
+                                                Guest
+                                            </div>
                                         </div>
-                                    </div>
+                                    ) : (
+                                        <Link
+                                            to="/profile"
+                                            className={styles.user}
+                                            onClick={handleClick}
+                                        >
+                                            <img
+                                                className={styles.user__avatar}
+                                                src={avatar}
+                                            />
+                                            <div className={styles.user__name}>
+                                                {currentUser.name}
+                                            </div>
+                                        </Link>
+                                    )}
                                 </button>
                             </li>
                             <li className={styles.count22}>
@@ -215,12 +230,29 @@ export default function Header() {
 
                 <div className={styles.info}>
                     <button>
-                        <div className={styles.user} onClick={handleClick}>
-                            <img className={styles.user__avatar} src={avatar} />
-                            <div className={styles.user__name}>
-                                {!currentUser ? 'Guest' : currentUser.name}
+                        {!currentUser ? (
+                            <div className={styles.user} onClick={handleClick}>
+                                <img
+                                    className={styles.user__avatar}
+                                    src={avatar}
+                                />
+                                <div className={styles.user__name}>Guest</div>
                             </div>
-                        </div>
+                        ) : (
+                            <Link
+                                to="/profile"
+                                className={styles.user}
+                                onClick={handleClick}
+                            >
+                                <img
+                                    className={styles.user__avatar}
+                                    src={avatar}
+                                />
+                                <div className={styles.user__name}>
+                                    {currentUser.name}
+                                </div>
+                            </Link>
+                        )}
                     </button>
 
                     <form className={styles.form}>

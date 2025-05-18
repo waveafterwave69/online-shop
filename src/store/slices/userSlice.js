@@ -17,6 +17,46 @@ export const createUser = createAsyncThunk(
     }
 )
 
+export const loginUser = createAsyncThunk(
+    'users/loginUser',
+    async (payload, thunkAPI) => {
+        try {
+            const res = await axios.post(
+                'https://api.escuelajs.co/api/v1/auth/login',
+                payload
+            )
+            const login = await axios(
+                'https://api.escuelajs.co/api/v1/auth/profile',
+                {
+                    headers: {
+                        Authorization: `Bearer ${res.data.access_token}`,
+                    },
+                }
+            )
+            return login.data
+        } catch (error) {
+            console.log(error)
+            return thunkAPI.rejectWithValue(err)
+        }
+    }
+)
+
+export const updateUser = createAsyncThunk(
+    'users/updateUser',
+    async (payload, thunkAPI) => {
+        try {
+            const res = await axios.put(
+                `https://api.escuelajs.co/api/v1/users/${payload.id}`,
+                payload
+            )
+            return res.data
+        } catch (error) {
+            console.log(error)
+            return thunkAPI.rejectWithValue(err)
+        }
+    }
+)
+
 const userSlice = createSlice({
     name: 'user',
     initialState: {
@@ -84,9 +124,18 @@ const userSlice = createSlice({
         toggleForm: (state, action) => {
             state.showForm = action.payload
         },
+        toggleFormType: (state, action) => {
+            state.formType = action.payload
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(createUser.fulfilled, (state, action) => {
+            state.currentUser = action.payload
+        })
+        builder.addCase(loginUser.fulfilled, (state, action) => {
+            state.currentUser = action.payload
+        })
+        builder.addCase(updateUser.fulfilled, (state, action) => {
             state.currentUser = action.payload
         })
     },
@@ -98,6 +147,7 @@ export const {
     addItemToFav,
     removeItemFromFav,
     toggleForm,
+    toggleFormType,
 } = userSlice.actions
 
 export default userSlice.reducer

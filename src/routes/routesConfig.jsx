@@ -1,7 +1,7 @@
-import Sidebar from '../components/Sidebar/Sidebar'
 import SingleProduct from '../components/SingleProduct/SingleProduct'
 import CategoriesPage from '../pages/CategoriesPage/CategoriesPage'
 import HomePage from '../pages/HomePage/HomePage'
+import ProfilePage from '../pages/ProfilePage/ProfilePage'
 
 export const routesConfig = [
     {
@@ -27,5 +27,9 @@ export const routesConfig = [
     {
         page: <SingleProduct />,
         url: '/products/:id',
+    },
+    {
+        page: <ProfilePage />,
+        url: '/profile',
     },
 ]
