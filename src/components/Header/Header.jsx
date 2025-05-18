@@ -11,14 +11,34 @@ import categoryImg from '../../img/category.svg'
 import closeImg from '../../img/close.svg'
 import { useDispatch, useSelector } from 'react-redux'
 import { toggleForm, toggleFormType } from '../../store/slices/userSlice'
+import { useGetProductsQuery } from '../../store/api/apiSlice'
 
 export default function Header() {
+    const [isOpen, setIsOpen] = useState(false)
+    const [searchValue, setSearchValue] = useState('')
+    const [showSearchValue, setShowSearchValue] = useState(false)
+
     const dispatch = useDispatch()
     const { user } = useSelector((state) => state)
+    const { data, isLoading } = useGetProductsQuery({ title: searchValue })
     let totalCountOfCart = 0
     let totalCountOfFav = 0
 
     const currentUser = user.currentUser
+
+    const handleSearch = (e) => {
+        setSearchValue(e.target.value)
+        setShowSearchValue(true)
+    }
+
+    window.onclick = () => {
+        setShowSearchValue(false)
+    }
+
+    const itemClick = () => {
+        setSearchValue('')
+        setShowSearchValue(false)
+    }
 
     user.cart.forEach((el) => {
         totalCountOfCart += el.quantity
@@ -29,8 +49,6 @@ export default function Header() {
             totalCountOfFav++
         }
     })
-
-    const [isOpen, setIsOpen] = useState(false)
 
     const toggleMenu = () => {
         setIsOpen(!isOpen)
@@ -88,16 +106,52 @@ export default function Header() {
                                 src={formSearchOmg}
                             />
                             <input
-                                type="search"
+                                className={styles.input}
                                 name="search"
                                 placeholder="Search for anything..."
                                 autoComplete="off"
-                                onChange={() => {}}
-                                value=""
+                                onChange={handleSearch}
+                                value={searchValue}
+                                onClick={() => setShowSearchValue(true)}
                             />
                         </div>
 
-                        {false && <div className={styles.form__box}>da</div>}
+                        {searchValue && showSearchValue && (
+                            <ul className={styles.form__box}>
+                                {isLoading ? (
+                                    <p style={{ color: 'black' }}>Loading</p>
+                                ) : !data.length ? (
+                                    <p style={{ color: 'black' }}>No result</p>
+                                ) : (
+                                    data.map(({ title, images, id }) => {
+                                        return (
+                                            <li key={id}>
+                                                <Link
+                                                    to={`/products/${id}`}
+                                                    className={styles.box__item}
+                                                    onClick={itemClick}
+                                                >
+                                                    <img
+                                                        className={
+                                                            styles.box__img
+                                                        }
+                                                        src={images}
+                                                        alt="img"
+                                                    />
+                                                    <p
+                                                        className={
+                                                            styles.box__title
+                                                        }
+                                                    >
+                                                        {title}
+                                                    </p>
+                                                </Link>
+                                            </li>
+                                        )
+                                    })
+                                )}
+                            </ul>
+                        )}
                     </form>
                     <button
                         className={styles.burgerButton}
@@ -262,16 +316,52 @@ export default function Header() {
                                 src={formSearchOmg}
                             />
                             <input
-                                type="search"
+                                className={styles.input}
                                 name="search"
                                 placeholder="Search for anything..."
                                 autoComplete="off"
-                                onChange={() => {}}
-                                value=""
+                                onChange={handleSearch}
+                                value={searchValue}
+                                onClick={() => setShowSearchValue(true)}
                             />
                         </div>
 
-                        {false && <div className={styles.form__box}>da</div>}
+                        {searchValue && showSearchValue && (
+                            <ul className={styles.form__box}>
+                                {isLoading ? (
+                                    <p style={{ color: 'black' }}>Loading</p>
+                                ) : !data.length ? (
+                                    <p style={{ color: 'black' }}>No result</p>
+                                ) : (
+                                    data.map(({ title, images, id }) => {
+                                        return (
+                                            <li key={id}>
+                                                <Link
+                                                    to={`/products/${id}`}
+                                                    className={styles.box__item}
+                                                    onClick={itemClick}
+                                                >
+                                                    <img
+                                                        className={
+                                                            styles.box__img
+                                                        }
+                                                        src={images}
+                                                        alt="img"
+                                                    />
+                                                    <p
+                                                        className={
+                                                            styles.box__title
+                                                        }
+                                                    >
+                                                        {title}
+                                                    </p>
+                                                </Link>
+                                            </li>
+                                        )
+                                    })
+                                )}
+                            </ul>
+                        )}
                     </form>
 
                     <ul className={styles.list}>
