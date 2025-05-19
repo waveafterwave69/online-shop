@@ -1,3 +1,4 @@
+import SingleCategory from '../components/SingleCategory/SingleCategory'
 import SingleProduct from '../components/SingleProduct/SingleProduct'
 import CategoriesPage from '../pages/CategoriesPage/CategoriesPage'
 import HomePage from '../pages/HomePage/HomePage'
@@ -21,7 +22,7 @@ export const routesConfig = [
         url: 'categoriespage',
     },
     {
-        // page: <HomePage />,
+        page: <SingleCategory />,
         url: '/categories/:id',
     },
     {
