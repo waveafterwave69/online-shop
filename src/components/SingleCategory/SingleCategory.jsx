@@ -5,9 +5,11 @@ import Categories from '../Categories/Categories'
 import { useParams } from 'react-router'
 import { useGetProductsQuery } from '../../store/api/apiSlice'
 import Products from '../Products/Products'
+import { useSelector } from 'react-redux'
 
 export default function SingleCategory() {
     const { id } = useParams()
+    const { list } = useSelector(({ categories }) => categories)
 
     const defaultValues = {
         title: '',
@@ -21,7 +23,7 @@ export default function SingleCategory() {
     }
 
     const [values, setValues] = useState(defaultValues)
-
+    const [cat, setCat] = useState('')
     const [params, setParams] = useState(defaultParams)
 
     useEffect(() => {
@@ -33,6 +35,14 @@ export default function SingleCategory() {
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
+
+    useEffect(() => {
+        if (!id || !list) return
+
+        const { name } = list.find((item) => item.id === id * 1)
+
+        setCat(name)
+    }, [list, id])
 
     const { data, isLoading, isSuccess } = useGetProductsQuery(params)
 
@@ -50,7 +60,7 @@ export default function SingleCategory() {
         <>
             <Poster />
             <section className={styles.categories}>
-                <h2 className={styles.categories__title}>Shoes</h2>
+                <h2 className={styles.categories__title}>{cat}</h2>
                 <form
                     onSubmit={handleSubmit}
                     className={styles.categories__form}
@@ -84,7 +94,6 @@ export default function SingleCategory() {
 
                     <button type="submit" hidden />
                 </form>
-                <ul className={styles.categories__list}></ul>
                 {isLoading ? (
                     <div className={styles.preloader}>Loading...</div>
                 ) : !isSuccess || !data.length ? (
@@ -105,7 +114,10 @@ export default function SingleCategory() {
                         title=""
                         products={data}
                         amount={data.length}
-                        style={{ display: 'flex', justifyContent: 'center' }}
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                        }}
                     />
                 )}
             </section>
