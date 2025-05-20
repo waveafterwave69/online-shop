@@ -1,3 +1,4 @@
+import Cart from '../components/Cart/Cart'
 import SingleCategory from '../components/SingleCategory/SingleCategory'
 import SingleProduct from '../components/SingleProduct/SingleProduct'
 import CategoriesPage from '../pages/CategoriesPage/CategoriesPage'
@@ -14,7 +15,7 @@ export const routesConfig = [
         url: '/favorites',
     },
     {
-        page: <HomePage />,
+        page: <Cart />,
         url: '/cart',
     },
     {

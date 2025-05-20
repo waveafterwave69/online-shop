@@ -71,6 +71,8 @@ const userSlice = createSlice({
         addItemToCart: (state, action) => {
             let newCart = [...state.cart]
             const found = state.cart.find(({ id }) => id === action.payload.id)
+            console.log(action)
+            console.log(action.payload)
 
             if (found) {
                 newCart = newCart.map((item) => {
