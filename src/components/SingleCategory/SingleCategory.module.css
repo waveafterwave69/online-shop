@@ -52,6 +52,20 @@
     background-color: var(--color-light-purple);
 }
 
+.find__button {
+    background-color: var(--color-dark-purple);
+    margin-top: 35px;
+    padding: 10px 55px;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 6px;
+    margin-bottom: 30px;
+}
+
+.find__button:hover {
+    background-color: var(--color-light-purple);
+}
+
 @media (max-width: 900px) {
     .form__filter {
         align-items: center;
@@ -93,7 +107,10 @@
         font-size: 16px;
     }
 
-    .noResButton {
+    .noResButton,
+
+
+    .find__button {
         padding: 10px 50px;
         font-size: 16px;
         margin-bottom: 30px;

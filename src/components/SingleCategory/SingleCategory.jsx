@@ -92,7 +92,9 @@ export default function SingleCategory() {
                         />
                     </div>
 
-                    <button type="submit" hidden />
+                    <button type="submit" className={styles.find__button}>
+                        Find
+                    </button>
                 </form>
                 {isLoading ? (
                     <div className={styles.preloader}>Loading...</div>
