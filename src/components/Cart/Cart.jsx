@@ -1,5 +1,8 @@
 import { Link } from 'react-router'
-import { addItemToCart } from '../../store/slices/userSlice'
+import {
+    addItemToCart,
+    removeItemFromCartAll,
+} from '../../store/slices/userSlice'
 import styles from './Cart.module.css'
 
 import { useDispatch, useSelector } from 'react-redux'
@@ -11,6 +14,8 @@ export default function Cart() {
     const handleCart = (item, quantity) => {
         if (quantity > 0) {
             dispatch(addItemToCart({ ...item, quantity }))
+        } else {
+            dispatch(removeItemFromCartAll(item))
         }
     }
 
@@ -46,7 +51,7 @@ export default function Cart() {
                                             +
                                         </button>
                                         <button
-                                            disabled={el.quantity === 1}
+                                            // disabled={el.quantity === 1}
                                             onClick={() =>
                                                 handleCart(el, el.quantity - 1)
                                             }

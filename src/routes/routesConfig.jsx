@@ -2,6 +2,7 @@ import Cart from '../components/Cart/Cart'
 import SingleCategory from '../components/SingleCategory/SingleCategory'
 import SingleProduct from '../components/SingleProduct/SingleProduct'
 import CategoriesPage from '../pages/CategoriesPage/CategoriesPage'
+import FavPage from '../pages/FavPage/FavPage'
 import HomePage from '../pages/HomePage/HomePage'
 import ProfilePage from '../pages/ProfilePage/ProfilePage'
 
@@ -11,7 +12,7 @@ export const routesConfig = [
         url: '/',
     },
     {
-        page: <HomePage />,
+        page: <FavPage />,
         url: '/favorites',
     },
     {

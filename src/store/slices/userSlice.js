@@ -102,6 +102,9 @@ const userSlice = createSlice({
 
             state.cart = newCart
         },
+        removeItemFromCartAll: (state, action) => {
+            state.cart = state.cart.filter(({ id }) => id !== action.payload.id)
+        },
         addItemToFav: (state, action) => {
             let newFav = state.fav
 
@@ -110,18 +113,7 @@ const userSlice = createSlice({
             state.fav = newFav
         },
         removeItemFromFav: (state, action) => {
-            let newFav = [...state.fav]
-
-            newFav = newFav.map((item) => {
-                return item.id === action.payload.id
-                    ? {
-                          ...item,
-                          fav: (item = false),
-                      }
-                    : item
-            })
-
-            state.fav = newFav
+            state.fav = state.fav.filter(({ id }) => id !== action.payload.id)
         },
         toggleForm: (state, action) => {
             state.showForm = action.payload
@@ -150,6 +142,7 @@ export const {
     removeItemFromFav,
     toggleForm,
     toggleFormType,
+    removeItemFromCartAll,
 } = userSlice.actions
 
 export default userSlice.reducer
