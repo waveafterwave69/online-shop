@@ -19,6 +19,10 @@ export default function HomePage() {
         dispatch(filterByPrice(100))
     }, [dispatch, list.length])
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
     return (
         <>
             <Poster />

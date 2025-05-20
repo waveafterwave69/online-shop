@@ -1,4 +1,6 @@
 .header {
+    background-color: var(--color-dark-black);
+    z-index: 1;
     display: flex;
     padding: 29px 0px;
     justify-content: space-between;
