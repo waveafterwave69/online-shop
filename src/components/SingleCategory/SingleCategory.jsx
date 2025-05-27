@@ -74,22 +74,6 @@ export default function SingleCategory() {
                             onChange={hangleChange}
                             value={values.title}
                         />
-                        <input
-                            type="number"
-                            name="prace_min"
-                            placeholder="0"
-                            className={styles.filter__text}
-                            onChange={hangleChange}
-                            value={values.price_min}
-                        />
-                        <input
-                            type="number"
-                            name="prace_max"
-                            placeholder="0"
-                            className={styles.filter__text}
-                            onChange={hangleChange}
-                            value={values.price_min}
-                        />
                     </div>
 
                     <button type="submit" className={styles.find__button}>
