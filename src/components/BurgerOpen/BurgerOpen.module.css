@@ -159,15 +159,15 @@
     transition: all 0.3s ease;
 }
 
-
 .menu {
+    z-index: 100;
     position: absolute;
     top: 0px;
     right: -15px;
     width: 415px;
     height: 100vh;
     padding: 18px 0px 20px 50px;
-    z-index: 15;
+    z-index: 10;
     background-color: #0e0e0e;
 }
 
