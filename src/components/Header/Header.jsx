@@ -5,7 +5,7 @@ import avatar from '../../img/avatar.svg'
 import heartImg from '../../img/heart.svg'
 import cartImg from '../../img/cart.svg'
 import useMenu from '../../hooks/useMenu'
-import BurgerMenu from '../burgerMenu/burgerMenu'
+import BurgerMenu from '../BurgerMenu/BurgerMenu'
 import HeaderSearch from '../HeaderSearch/HeaderSearch'
 
 export default function Header() {
