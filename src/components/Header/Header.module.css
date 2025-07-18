@@ -43,43 +43,6 @@
     color: var(--color-dark-white);
 }
 
-.form {
-    position: relative;
-}
-
-.form__box {
-    margin-top: 5px;
-    background-color: var(--color-light-white);
-    border-radius: 6px;
-    position: absolute;
-    width: 303px;
-    display: flex;
-    flex-direction: column;
-    max-height: 300px;
-    overflow: auto;
-    row-gap: 5px;
-    padding: 8px;
-}
-
-.box__item {
-    background-color: var(--color-dark-white);
-    padding: 5px;
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    column-gap: 10px;
-}
-
-.box__img {
-    width: 60px;
-    border-radius: 6px;
-}
-
-.box__title {
-    font-weight: 500;
-    font-size: 16px;
-    color: black;
-}
 
 .list {
     display: flex;
@@ -116,60 +79,6 @@
     justify-content: flex-start;
 }
 
-.burgerMenu {
-    display: flex;
-    justify-content: space-between;
-    column-gap: 30px;
-    background-color: #191919ad;
-    backdrop-filter: blur(3px);
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    padding: 15px 30px;
-    display: none;
-    align-items: center;
-    justify-content: flex-end;
-}
-
-.burgerButton {
-    position: relative;
-    right: 0px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 30px;
-    height: 30px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    z-index: 10;
-}
-
-.input {
-    width: 100%;
-    padding-right: 6px;
-}
-
-.burgerLine {
-    width: 30px;
-    height: 3px;
-    background-color: var(--color-dark-purple);
-    transition: all 0.3s ease;
-}
-
-
-.menu {
-    position: absolute;
-    top: 0px;
-    right: -15px;
-    width: 415px;
-    height: 100vh;
-    padding: 18px 0px 20px 50px;
-    z-index: 15;
-    background-color: #0e0e0e;
-}
 
 .overlay {
     position: fixed;
@@ -180,13 +89,7 @@
     height: 150%;
     background-color: rgb(0, 0, 0, 0.4);
     backdrop-filter: blur(3px);
-    z-index: 100;
-}
-
-.burgerList {
-    display: flex;
-    flex-direction: column;
-    row-gap: 15px;
+    z-index: 10;
 }
 
 .count22 {
@@ -206,7 +109,6 @@
     border-radius: 100%;
     background-color: var(--color-light-purple);
 }
-
 
 .menu li {
     margin-bottom: 10px;
@@ -234,106 +136,8 @@
     opacity: 0.75;
 }
 
-
 @media (max-width: 1440px) {
-    .user__avatar {
-        width: 39px;
-    }
-
-    .user__name {
-        font-size: 17px;
-    }
-
     .header {
         display: none;
-    }
-
-    .header__logo {
-        width: 100px;
-        margin-bottom: 15px;
-    }
-
-    .burgerMenu {
-        display: flex;
-    }
-}
-
-@media (max-width: 768px) {
-    .burgerButton {
-        width: 30px;
-        height: 30px;
-    }
-
-    .burgerLine {
-        width: 30px;
-        height: 3px;
-    }
-
-    .menu {
-        width: 315px;
-        padding: 20px 0px 20px 35px;
-    }
-
-
-}
-
-@media (max-width: 425px) {
-    .form__box {
-        width: 231px;
-        row-gap: 5px;
-        padding: 5px;
-    }
-
-    .box__item {
-        background-color: var(--color-dark-white);
-        padding: 5px;
-        column-gap: 8px;
-    }
-
-    .box__img {
-        width: 45px;
-    }
-
-    .box__title {
-        font-size: 14px;
-    }
-
-    .form__row {
-        column-gap: 10px;
-        padding: 5px 10px;
-        width: 100%;
-        font-size: 15px;
-    }
-
-    .burgerButton {
-        width: 30px;
-        height: 30px;
-    }
-
-    .burgerLine {
-        width: 30px;
-        height: 3px;
-    }
-
-    .menu {
-        width: 275px;
-        padding: 18px 0px 20px 20px;
-    }
-
-    .user__avatar {
-        width: 37px;
-    }
-
-    .user__name {
-        font-size: 16px;
-    }
-
-    .header__logo {
-        width: 75px;
-        margin-bottom: 20px;
-    }
-
-    .close {
-        width: 27px;
     }
 }

@@ -1,20 +1,3 @@
-.header {
-    display: flex;
-    padding: 29px 0px;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.header__logo {
-    width: 78px;
-}
-
-.info {
-    display: flex;
-    align-items: center;
-    column-gap: 220px;
-}
-
 .user {
     display: flex;
     column-gap: 10px;
@@ -31,134 +14,6 @@
     color: var(--color-dark-white);
 }
 
-.form__row {
-    display: flex;
-    column-gap: 10px;
-    background-color: var(--color-dark-black);
-    padding: 7px 13px;
-    border-radius: 6px;
-    width: 303px;
-    font-weight: 400;
-    font-size: 16px;
-    color: var(--color-dark-white);
-}
-
-.form {
-    position: relative;
-}
-
-.form__box {
-    margin-top: 5px;
-    background-color: var(--color-light-white);
-    border-radius: 6px;
-    position: absolute;
-    width: 303px;
-    display: flex;
-    flex-direction: column;
-    max-height: 300px;
-    overflow: auto;
-    row-gap: 5px;
-    padding: 8px;
-}
-
-.box__item {
-    background-color: var(--color-dark-white);
-    padding: 5px;
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    column-gap: 10px;
-}
-
-.box__img {
-    width: 60px;
-    border-radius: 6px;
-}
-
-.box__title {
-    font-weight: 500;
-    font-size: 16px;
-    color: black;
-}
-
-.list {
-    display: flex;
-    column-gap: 20px;
-    align-items: center;
-}
-
-.list__item {
-    position: relative;
-}
-
-.list__item img {
-    width: 30px;
-}
-
-.count {
-    position: absolute;
-    bottom: -5px;
-    right: -3px;
-    color: var(--color-light-white);
-    font-size: 12px;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    padding: 2px 6px;
-    border-radius: 100%;
-    background-color: var(--color-light-purple);
-}
-
-.da {
-    display: flex;
-    align-items: center;
-    position: relative;
-    justify-content: flex-start;
-}
-
-.burgerMenu {
-    display: flex;
-    justify-content: space-between;
-    column-gap: 30px;
-    background-color: #191919ad;
-    backdrop-filter: blur(3px);
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    padding: 15px 30px;
-    display: none;
-    align-items: center;
-    justify-content: flex-end;
-}
-
-.burgerButton {
-    position: relative;
-    right: 0px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 30px;
-    height: 30px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    z-index: 10;
-}
-
-.input {
-    width: 100%;
-    padding-right: 6px;
-}
-
-.burgerLine {
-    width: 30px;
-    height: 3px;
-    background-color: var(--color-dark-purple);
-    transition: all 0.3s ease;
-}
-
 .menu {
     z-index: 100;
     position: absolute;
@@ -171,42 +26,11 @@
     background-color: #0e0e0e;
 }
 
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    overflow: hidden;
-    width: 100%;
-    height: 150%;
-    background-color: rgb(0, 0, 0, 0.4);
-    backdrop-filter: blur(3px);
-    z-index: 100;
-}
-
 .burgerList {
     display: flex;
     flex-direction: column;
     row-gap: 15px;
 }
-
-.count22 {
-    position: relative;
-}
-
-.count2 {
-    position: absolute;
-    bottom: -5px;
-    left: 10px;
-    color: var(--color-light-white);
-    font-size: 12px;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    padding: 2px 6px;
-    border-radius: 100%;
-    background-color: var(--color-light-purple);
-}
-
 
 .menu li {
     margin-bottom: 10px;
@@ -218,9 +42,6 @@
     top: 18px;
 }
 
-.count__text {
-    color: var(--color-dark-white);
-}
 
 .count22:hover {
     opacity: 0.75;
@@ -259,16 +80,6 @@
 }
 
 @media (max-width: 768px) {
-    .burgerButton {
-        width: 30px;
-        height: 30px;
-    }
-
-    .burgerLine {
-        width: 30px;
-        height: 3px;
-    }
-
     .menu {
         width: 315px;
         padding: 20px 0px 20px 35px;
@@ -278,43 +89,6 @@
 }
 
 @media (max-width: 425px) {
-    .form__box {
-        width: 231px;
-        row-gap: 5px;
-        padding: 5px;
-    }
-
-    .box__item {
-        background-color: var(--color-dark-white);
-        padding: 5px;
-        column-gap: 8px;
-    }
-
-    .box__img {
-        width: 45px;
-    }
-
-    .box__title {
-        font-size: 14px;
-    }
-
-    .form__row {
-        column-gap: 10px;
-        padding: 5px 10px;
-        width: 100%;
-        font-size: 15px;
-    }
-
-    .burgerButton {
-        width: 30px;
-        height: 30px;
-    }
-
-    .burgerLine {
-        width: 30px;
-        height: 3px;
-    }
-
     .menu {
         width: 275px;
         padding: 18px 0px 20px 20px;

@@ -5,17 +5,5 @@ import BurgerClose from '../BurgerCLose/BurgerClose'
 export default function BurgerMenu() {
     const { isOpen } = useMenu()
 
-    console.log(isOpen)
-
-    return (
-        <>
-            {!isOpen ? (
-                <>
-                    <BurgerClose />
-                </>
-            ) : (
-                <BurgerOpen />
-            )}
-        </>
-    )
+    return <>{!isOpen ? <BurgerClose /> : <BurgerOpen />}</>
 }

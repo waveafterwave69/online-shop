@@ -6,6 +6,10 @@ import FavPage from '../pages/FavPage/FavPage'
 import HomePage from '../pages/HomePage/HomePage'
 import ProfilePage from '../pages/ProfilePage/ProfilePage'
 
+import categoryImg from '../img/category.svg'
+import heartImg from '../img/heart.svg'
+import cartImg from '../img/cart.svg'
+
 export const routesConfig = [
     {
         page: <HomePage />,
@@ -14,14 +18,23 @@ export const routesConfig = [
     {
         page: <FavPage />,
         url: '/favorites',
+        burger: true,
+        text: 'Favorites',
+        img: heartImg,
     },
     {
         page: <Cart />,
         url: '/cart',
+        burger: true,
+        text: 'Cart',
+        img: cartImg,
     },
     {
         page: <CategoriesPage />,
         url: 'categoriespage',
+        burger: true,
+        text: 'Categories',
+        img: categoryImg,
     },
     {
         page: <SingleCategory />,

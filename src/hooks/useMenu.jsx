@@ -2,13 +2,15 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { useGetProductsQuery } from '../store/api/apiSlice'
 import { toggleForm, toggleFormType } from '../store/slices/userSlice'
+import { setOpen } from '../store/slices/burgerSlice'
 
 export default function useMenu() {
-    const [isOpen, setIsOpen] = useState(false)
+    // const [isOpen, setIsOpen] = useState(false)
     const [searchValue, setSearchValue] = useState('')
     const [showSearchValue, setShowSearchValue] = useState(false)
 
     const dispatch = useDispatch()
+    const { isOpen } = useSelector((state) => state.burger)
     const { user } = useSelector((state) => state)
     const { data, isLoading } = useGetProductsQuery({ title: searchValue })
     let totalCountOfCart = 0
@@ -41,12 +43,12 @@ export default function useMenu() {
     })
 
     const toggleMenu = () => {
-        setIsOpen(!isOpen)
+        dispatch(setOpen())
     }
 
     const handleOverlay = () => {
         if (isOpen) {
-            setIsOpen(false)
+            dispatch(setOpen())
         }
     }
 
@@ -83,5 +85,6 @@ export default function useMenu() {
         isLoading,
         totalCountOfCart,
         totalCountOfFav,
+        setOpen,
     }
 }
