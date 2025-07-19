@@ -1,40 +1,9 @@
 import styles from './Profile.module.css'
 import SideBar from '../Sidebar/Sidebar'
-import { useDispatch, useSelector } from 'react-redux'
-import { useEffect, useState } from 'react'
-import { updateUser } from '../../store/slices/userSlice'
+import useProfile from '../../hooks/useProfile'
 
 export default function Profile() {
-    const { currentUser } = useSelector((state) => state.user)
-
-    const dispatch = useDispatch()
-
-    const [values, setValues] = useState({
-        name: '',
-        email: '',
-        password: '',
-        avatar: 'https://picsum.photos/800',
-    })
-
-    const handleChange = (e) => {
-        setValues({ ...values, [e.target.name]: e.target.value })
-    }
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
-
-        const isNotEmpty = Object.values(values).every((val) => val)
-
-        if (!isNotEmpty) return
-
-        dispatch(updateUser(values))
-    }
-
-    useEffect(() => {
-        if (!currentUser) return
-
-        setValues(currentUser)
-    }, [currentUser])
+    const { values, handleChange, handleSubmit } = useProfile()
 
     return (
         <>

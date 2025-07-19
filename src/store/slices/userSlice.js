@@ -9,6 +9,7 @@ export const createUser = createAsyncThunk(
                 'https://api.escuelajs.co/api/v1/users',
                 payload
             )
+            console.log(res)
             return res.data
         } catch (error) {
             console.log(error)

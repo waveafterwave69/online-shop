@@ -79,7 +79,6 @@ export default function BurgerOpen() {
                                             totalCountOfCart={totalCountOfCart}
                                             totalCountOfFav={totalCountOfFav}
                                             handleClick={handleClick}
-                                            currentUser={currentUser}
                                         />
                                     )
                             )}

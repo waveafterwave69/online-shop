@@ -8,6 +8,10 @@ export default function Cart() {
     const { cart } = useSelector(({ user }) => user)
     const { setCart } = useSetCart()
 
+    function setItem() {
+        setCart(el, el.quantity + 1)
+    }
+
     return (
         <>
             <section className={styles.cart}>
@@ -32,20 +36,8 @@ export default function Cart() {
                                         </div>
                                     </div>
                                     <div className={styles.item__buttons}>
-                                        <button
-                                            onClick={() =>
-                                                setCart(el, el.quantity + 1)
-                                            }
-                                        >
-                                            +
-                                        </button>
-                                        <button
-                                            onClick={() =>
-                                                setCart(el, el.quantity - 1)
-                                            }
-                                        >
-                                            -
-                                        </button>
+                                        <button onClick={setItem}>+</button>
+                                        <button onClick={setItem}>-</button>
                                     </div>
                                 </li>
                             )}

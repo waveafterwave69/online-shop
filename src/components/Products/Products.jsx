@@ -9,7 +9,7 @@ export default function Products({ title, products = [], amount, style = {} }) {
             <section className={styles.products} style={style}>
                 {title && <h2 className={styles.products__title}>{title}</h2>}
                 <ul className={styles.products__list}>
-                    {list.map(({ id, images, title, category, price }) => (
+                    {list.map(({ id, images, title, price }) => (
                         <li key={id} className={styles.list__item}>
                             <Link to={`/products/${id}`}>
                                 <img

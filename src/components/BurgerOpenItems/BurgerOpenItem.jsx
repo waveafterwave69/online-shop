@@ -9,7 +9,6 @@ export default function BurgerOpenItems({
     totalCountOfCart,
     totalCountOfFav,
     handleClick,
-    currentUser,
 }) {
     return (
         <>
@@ -17,10 +16,7 @@ export default function BurgerOpenItems({
                 className={styles.count22}
                 onClick={text == 'Cart' ? handleClick : undefined}
             >
-                <Link
-                    to={text == 'Cart' ? currentUser && url : url}
-                    onClick={toggleMenu}
-                >
+                <Link to={url} onClick={toggleMenu}>
                     <div
                         style={{
                             display: 'flex',

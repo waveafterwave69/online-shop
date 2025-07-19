@@ -5,7 +5,6 @@ import { toggleForm, toggleFormType } from '../store/slices/userSlice'
 import { setOpen } from '../store/slices/burgerSlice'
 
 export default function useMenu() {
-    // const [isOpen, setIsOpen] = useState(false)
     const [searchValue, setSearchValue] = useState('')
     const [showSearchValue, setShowSearchValue] = useState(false)
 
@@ -86,5 +85,6 @@ export default function useMenu() {
         totalCountOfCart,
         totalCountOfFav,
         setOpen,
+        currentUser,
     }
 }
