@@ -4,7 +4,7 @@ import close from '../../img/close.svg'
 import useSignup from '../../hooks/useSignup'
 
 export default function UserSignup({ closeForm }) {
-    const { showForm, handleSubmit, values, handleChange, toggleForm } =
+    const { showForm, handleSubmit, values, handleChange, toggleFormToSign } =
         useSignup()
 
     return (
@@ -65,7 +65,7 @@ export default function UserSignup({ closeForm }) {
                             </button>
                         </form>
                         <button
-                            onClick={toggleForm}
+                            onClick={toggleFormToSign}
                             type="button"
                             className={styles.user__button__another}
                         >

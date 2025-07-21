@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { createUser, toggleFormType } from '../store/slices/userSlice'
+import {
+    createUser,
+    toggleFormType,
+    toggleForm,
+} from '../store/slices/userSlice'
 
 export default function useSignup() {
     const { showForm } = useSelector((state) => state.user)
@@ -19,7 +23,7 @@ export default function useSignup() {
         passwordError: '',
     })
 
-    const toggleForm = () => {
+    const toggleFormToSign = () => {
         dispatch(toggleFormType('login'))
     }
 
@@ -36,7 +40,7 @@ export default function useSignup() {
 
         if (!errors.nameError && !errors.emailError && !errors.passwordError) {
             dispatch(createUser(values))
-            closeForm()
+            dispatch(toggleForm(false))
         }
     }
 
@@ -51,5 +55,12 @@ export default function useSignup() {
         }
     }, [showForm])
 
-    return { showForm, handleSubmit, values, handleChange, toggleForm }
+    return {
+        showForm,
+        handleSubmit,
+        values,
+        handleChange,
+        toggleForm,
+        toggleFormToSign,
+    }
 }

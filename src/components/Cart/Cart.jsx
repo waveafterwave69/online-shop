@@ -8,8 +8,12 @@ export default function Cart() {
     const { cart } = useSelector(({ user }) => user)
     const { setCart } = useSetCart()
 
-    function setItem() {
+    function setItem(el) {
         setCart(el, el.quantity + 1)
+    }
+
+    function setItemMinus(el) {
+        setCart(el, el.quantity - 1)
     }
 
     return (
@@ -17,7 +21,7 @@ export default function Cart() {
             <section className={styles.cart}>
                 <ul className={styles.cart__list}>
                     {cart.map((el) => (
-                        <>
+                        <div key={el.id}>
                             {el.quantity > 0 && (
                                 <li className={styles.cart__item} key={el.id}>
                                     <div className={styles.item__text}>
@@ -36,12 +40,18 @@ export default function Cart() {
                                         </div>
                                     </div>
                                     <div className={styles.item__buttons}>
-                                        <button onClick={setItem}>+</button>
-                                        <button onClick={setItem}>-</button>
+                                        <button onClick={() => setItem(el)}>
+                                            +
+                                        </button>
+                                        <button
+                                            onClick={() => setItemMinus(el)}
+                                        >
+                                            -
+                                        </button>
                                     </div>
                                 </li>
                             )}
-                        </>
+                        </div>
                     ))}
                 </ul>
             </section>

@@ -10,7 +10,7 @@ export default function Cart() {
     const { fav } = useSelector(({ user }) => user)
     const dispatch = useDispatch()
 
-    function deleteItem() {
+    function deleteItem(el) {
         dispatch(removeItemFromFav(el))
     }
 
@@ -38,7 +38,7 @@ export default function Cart() {
                                 <div className={styles.item__buttons}>
                                     <button
                                         style={{ padding: '8px' }}
-                                        onClick={deleteItem}
+                                        onClick={() => deleteItem(el)}
                                     >
                                         <img
                                             src={bin}
