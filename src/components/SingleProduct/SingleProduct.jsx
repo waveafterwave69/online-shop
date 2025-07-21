@@ -17,6 +17,7 @@ export default function SingleProduct() {
         needFav,
         handleFav,
         fav,
+        setImg,
         handleSize,
         handleFavMinus,
         handleCartMinus,

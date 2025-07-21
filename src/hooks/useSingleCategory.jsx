@@ -90,6 +90,7 @@ export default function useSingleCategory() {
         data,
         currentSize,
         img,
+        setImg,
         needEl,
         handleCart,
         needFav,
