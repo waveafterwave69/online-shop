@@ -61,5 +61,7 @@ export default function useCategory() {
         isLoading,
         isSuccess,
         data,
+        setParams,
+        setValues,
     }
 }

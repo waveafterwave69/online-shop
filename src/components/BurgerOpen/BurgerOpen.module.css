@@ -16,7 +16,7 @@
 
 .menu {
     z-index: 100;
-    position: absolute;
+    position: fixed;
     top: 0px;
     right: -15px;
     width: 415px;

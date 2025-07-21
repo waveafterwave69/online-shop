@@ -13,6 +13,8 @@ export default function SingleCategory() {
         isLoading,
         isSuccess,
         data,
+        setParams,
+        setValues,
     } = useCategory()
 
     return (
@@ -48,7 +50,7 @@ export default function SingleCategory() {
                             className={styles.noResButton}
                             onClick={() => {
                                 setParams(defaultParams)
-                                setValues(defaultValues)
+                                setValues(defaultParams)
                             }}
                         >
                             Reset
