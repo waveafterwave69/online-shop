@@ -21,7 +21,7 @@ interface UseMenuReturn {
     isLoading: boolean
     totalCountOfCart: number
     totalCountOfFav: number
-    setOpen: (value: boolean) => void
+    setOpen: any
     currentUser: any
 }
 
@@ -105,7 +105,7 @@ const useMenu = (): UseMenuReturn => {
         isLoading,
         totalCountOfCart,
         totalCountOfFav,
-        setOpen: (value: boolean | any) => dispatch(setOpen(value)),
+        setOpen,
         currentUser,
     }
 }

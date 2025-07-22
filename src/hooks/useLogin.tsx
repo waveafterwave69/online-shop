@@ -13,7 +13,7 @@ interface UseLoginReturn {
     }
 }
 
-const useLogin = (closeForm: () => void): UseLoginReturn => {
+const useLogin = (): UseLoginReturn => {
     const { showForm } = useSelector((state: any) => state.user)
 
     const dispatch = useDispatch<any>()
@@ -34,8 +34,12 @@ const useLogin = (closeForm: () => void): UseLoginReturn => {
     const handleSubmit = (e: any) => {
         e.preventDefault()
 
+        const isNotEmpty = Object.values(values).every((val) => val)
+
+        if (!isNotEmpty) return
+
         dispatch(loginUser(values))
-        closeForm()
+        // closeForm()
     }
 
     useEffect(() => {

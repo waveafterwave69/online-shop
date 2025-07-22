@@ -41,11 +41,11 @@ const SingleProduct: React.FC = () => {
                                     />
                                     <div className={styles.img__column}>
                                         {data &&
-                                            data.images.map((img) => (
+                                            data.images.map((img, index) => (
                                                 <button
-                                                    // onClick={() =>
-                                                    //     setImg(index)
-                                                    // }
+                                                    onClick={() =>
+                                                        setImg(index)
+                                                    }
                                                     key={img}
                                                     className={
                                                         styles.column__item
@@ -72,16 +72,14 @@ const SingleProduct: React.FC = () => {
                                                 {sizes.map((size) => (
                                                     <button
                                                         onClick={() =>
-                                                            handleSize(
-                                                                String(size)
-                                                            )
+                                                            handleSize(size)
                                                         }
                                                         key={size}
                                                         className={`${
                                                             styles.list__item
                                                         } ${
                                                             currentSize ===
-                                                                String(size) &&
+                                                                size &&
                                                             styles.active
                                                         }`}
                                                     >

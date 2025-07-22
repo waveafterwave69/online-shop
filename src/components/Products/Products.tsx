@@ -27,7 +27,7 @@ const Products: React.FC<ProductsProps> = ({
                             <Link to={`/products/${id}`}>
                                 <img
                                     src={images[0]}
-                                    alt={title}
+                                    alt=""
                                     className={styles.products__image}
                                 />
 

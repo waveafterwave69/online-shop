@@ -1,9 +1,11 @@
 import SingleProduct from '../../components/SingleProduct/SingleProduct'
 
-export default function ProductPage() {
+const ProductPage: React.FC = () => {
     return (
         <>
             <SingleProduct />
         </>
     )
 }
+
+export default ProductPage

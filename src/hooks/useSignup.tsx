@@ -18,6 +18,7 @@ interface UseSignupReturn {
     handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void
     toggleForm: any
     toggleFormToSign: any
+    setErrors: any
 }
 
 const useSignup = (): UseSignupReturn => {
@@ -77,6 +78,7 @@ const useSignup = (): UseSignupReturn => {
         handleChange,
         toggleForm,
         toggleFormToSign,
+        setErrors,
     }
 }
 

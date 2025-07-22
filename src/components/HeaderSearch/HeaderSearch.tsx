@@ -3,7 +3,7 @@ import useMenu from '../../hooks/useMenu'
 import formSearchOmg from '../../img/search.svg'
 import styles from './HeaderSearch.module.css'
 
-export default function HeaderSearch() {
+const HeaderSearch: React.FC = () => {
     const {
         searchValue,
         setShowSearchValue,
@@ -48,7 +48,7 @@ export default function HeaderSearch() {
                                         >
                                             <img
                                                 className={styles.box__img}
-                                                src={images[0]}
+                                                src={images}
                                                 alt="img"
                                             />
                                             <p className={styles.box__title}>
@@ -65,3 +65,5 @@ export default function HeaderSearch() {
         </>
     )
 }
+
+export default HeaderSearch

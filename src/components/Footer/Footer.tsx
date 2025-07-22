@@ -6,9 +6,10 @@ import facebookImg from '../../img/fc.svg'
 import youtubeImg from '../../img/yt.svg'
 import instagramImg from '../../img/inst.svg'
 
-export default function Footer() {
+const Footer: React.FC = () => {
     return (
         <>
+            {' '}
             <footer className={styles.footer}>
                 <div className={styles.footer__row}>
                     <div className={styles.row__img}>
@@ -38,3 +39,5 @@ export default function Footer() {
         </>
     )
 }
+
+export default Footer

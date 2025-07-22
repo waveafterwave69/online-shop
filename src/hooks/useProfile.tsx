@@ -16,8 +16,7 @@ const useProfile = (): UseProfileReturn => {
 
     const dispatch = useDispatch<any>()
 
-    const [values, setValues] = useState<User>({
-        id: currentUser.id,
+    const [values, setValues] = useState({
         name: '',
         email: '',
         password: '',
@@ -31,13 +30,17 @@ const useProfile = (): UseProfileReturn => {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
 
+        const isNotEmpty = Object.values(values).every((val) => val)
+
+        if (!isNotEmpty) return
+
         dispatch(updateUser(values))
     }
 
     useEffect(() => {
-        if (currentUser) {
-            setValues(currentUser)
-        }
+        if (!currentUser) return
+
+        setValues(currentUser)
     }, [currentUser])
 
     return {

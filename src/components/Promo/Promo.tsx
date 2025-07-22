@@ -5,7 +5,6 @@ import pcImg from '../../img/pc.png'
 const Promo: React.FC = () => {
     return (
         <>
-            {' '}
             <section className={styles.promo}>
                 <h1 className={styles.promo__title}>BIG SALE 20%</h1>
                 <div className={styles.promo__product}>

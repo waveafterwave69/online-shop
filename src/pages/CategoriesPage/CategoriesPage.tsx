@@ -1,38 +1,44 @@
 import { NavLink } from 'react-router-dom'
 import styles from './CategoriesPage.module.css'
 import { useSelector } from 'react-redux'
-import { Category } from '../../types'
+import { CartItem } from '../../types'
 
 const CategoriesPage: React.FC = () => {
-    const { list, isLoading } = useSelector(
-        (state: any) => state.categories
-    ) as { list: Category[]; isLoading: boolean }
+    const { list, isLoading } = useSelector(({ categories }: any) => categories)
 
-    const products = list ? list.filter((_, i) => i < 8) : []
+    let products = []
+
+    if (list) {
+        products = list.filter((_: any, i: any) => i < 8)
+    }
 
     return (
         <>
-            {' '}
             <aside className={styles.sidebar}>
                 <div>
                     <h2 className={styles.sidebar__title}>CATEGORIES</h2>
                     {isLoading && <p>Loading...</p>}
                     <nav className={styles.sidebar__nav}>
                         <ul className={styles.sidebar__list}>
-                            {products.map(({ id, name }) => (
-                                <li key={id} className={styles.list__item}>
-                                    <NavLink
-                                        className={({ isActive }) =>
-                                            `${isActive ? styles.active : ''}`
-                                        }
-                                        to={`/categories/${id}`}
-                                    >
-                                        <span className={styles.item__text}>
-                                            {name}
-                                        </span>
-                                    </NavLink>
-                                </li>
-                            ))}
+                            {products &&
+                                products.map(({ id, name }: CartItem) => (
+                                    <li key={id} className={styles.list__item}>
+                                        <NavLink
+                                            className={({ isActive }) =>
+                                                `${
+                                                    isActive
+                                                        ? styles.active
+                                                        : null
+                                                }`
+                                            }
+                                            to={`/categories/${id}`}
+                                        >
+                                            <span className={styles.item__text}>
+                                                {name}
+                                            </span>
+                                        </NavLink>
+                                    </li>
+                                ))}
                         </ul>
                     </nav>
                 </div>

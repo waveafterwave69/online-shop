@@ -8,7 +8,7 @@ import useMenu from '../../hooks/useMenu'
 import BurgerMenu from '../BurgerMenu/BurgerMenu'
 import HeaderSearch from '../HeaderSearch/HeaderSearch'
 
-export default function Header() {
+const Header: React.FC = () => {
     const {
         isOpen,
         handleClick,
@@ -85,3 +85,5 @@ export default function Header() {
         </>
     )
 }
+
+export default Header

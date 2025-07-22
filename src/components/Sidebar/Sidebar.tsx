@@ -12,7 +12,11 @@ const Sidebar: React.FC<SidebarProps> = ({ amount }) => {
         (state: any) => state.categories
     ) as { list: Category[]; isLoading: boolean }
 
-    const products = list.filter((_, i) => i < amount)
+    let products: any[] = []
+
+    if (list) {
+        products = list.filter((_, i) => i < amount)
+    }
 
     return (
         <>
@@ -21,20 +25,21 @@ const Sidebar: React.FC<SidebarProps> = ({ amount }) => {
                 {isLoading && <p>Loading...</p>}
                 <nav className={styles.sidebar__nav}>
                     <ul className={styles.sidebar__list}>
-                        {products.map(({ id, name }: Category) => (
-                            <li key={id} className={styles.list__item}>
-                                <NavLink
-                                    className={({ isActive }) =>
-                                        `${isActive ? styles.active : ''}`
-                                    }
-                                    to={`/categories/${id}`}
-                                >
-                                    <span className={styles.item__text}>
-                                        {name}
-                                    </span>
-                                </NavLink>
-                            </li>
-                        ))}
+                        {products &&
+                            products.map(({ id, name }) => (
+                                <li key={id} className={styles.list__item}>
+                                    <NavLink
+                                        className={({ isActive }) =>
+                                            `${isActive ? styles.active : null}`
+                                        }
+                                        to={`/categories/${id}`}
+                                    >
+                                        <span className={styles.item__text}>
+                                            {name}
+                                        </span>
+                                    </NavLink>
+                                </li>
+                            ))}
                     </ul>
                 </nav>
 

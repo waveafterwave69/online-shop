@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 import { Product } from '../../types'
 
@@ -9,21 +9,18 @@ interface ProductsState {
     isLoading: boolean
 }
 
-export const getProducts = createAsyncThunk<
-    Product[],
-    void,
-    { rejectValue: any }
->('products/getProducts', async (_, thunkAPI) => {
-    try {
-        const res = await axios.get<Product[]>(
-            'https://api.escuelajs.co/api/v1/products'
-        )
-        return res.data
-    } catch (error: any) {
-        console.log(error)
-        return thunkAPI.rejectWithValue(error)
+export const getProducts = createAsyncThunk<Product[]>(
+    'products/getProducts',
+    async (_, thunkAPI) => {
+        try {
+            const res = await axios('https://api.escuelajs.co/api/v1/products')
+            return res.data
+        } catch (error) {
+            console.log(error)
+            return thunkAPI.rejectWithValue(error)
+        }
     }
-})
+)
 
 const initialState: ProductsState = {
     list: [],
@@ -36,12 +33,12 @@ const productsSlice = createSlice({
     name: 'products',
     initialState,
     reducers: {
-        filterByPrice: (state, action: PayloadAction<number>) => {
+        filterByPrice: (state, action) => {
             state.filtered = state.list.filter(
                 ({ price }) => price < action.payload
             )
         },
-        getRelatedProducts: (state, action: PayloadAction<number>) => {
+        getRelatedProducts: (state, action) => {
             const list = state.list.filter(
                 ({ category: { id } }) => id === action.payload
             )
@@ -52,13 +49,10 @@ const productsSlice = createSlice({
         builder.addCase(getProducts.pending, (state) => {
             state.isLoading = true
         })
-        builder.addCase(
-            getProducts.fulfilled,
-            (state, action: PayloadAction<Product[]>) => {
-                state.list = action.payload
-                state.isLoading = false
-            }
-        )
+        builder.addCase(getProducts.fulfilled, (state, action) => {
+            state.list = action.payload
+            state.isLoading = false
+        })
         builder.addCase(getProducts.rejected, (state) => {
             state.isLoading = false
         })

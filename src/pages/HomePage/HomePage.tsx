@@ -5,23 +5,19 @@ import Categories from '../../components/Categories/Categories'
 import Banner from '../../components/Banner/Banner'
 import { useEffect } from 'react'
 import { filterByPrice } from '../../store/slices/productsSlice'
-import { Category, Product } from '../../types'
 
 const HomePage: React.FC = () => {
     const dispatch = useDispatch()
-    const { products, categories } = useSelector((state: any) => ({
-        products: state.products as { list: Product[]; filtered: Product[] },
-        categories: state.categories as {
-            list: Category[]
-            isLoading: boolean
-        },
-    }))
+    const {
+        products: { list, filtered },
+        categories,
+    }: any = useSelector((state) => state)
 
     useEffect(() => {
-        if (!products.list.length) return
+        if (!list.length) return
 
         dispatch(filterByPrice(100))
-    }, [dispatch, products.list.length])
+    }, [dispatch, list.length])
 
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -30,18 +26,14 @@ const HomePage: React.FC = () => {
     return (
         <>
             <Poster />
-            <Products products={products.list} amount={5} title="Trending" />
+            <Products products={list} amount={5} title="Trending" />
             <Categories
                 products={categories.list}
                 amount={5}
                 title="Worth seeing"
             />
             <Banner />
-            <Products
-                products={products.filtered}
-                amount={5}
-                title="Less than 100$"
-            />
+            <Products products={filtered} amount={5} title="Less than 100$" />
         </>
     )
 }

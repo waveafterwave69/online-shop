@@ -1,24 +1,9 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
-import { CartItem, FavItem, User, UserLogin } from '../../types'
-
-interface UserState {
-    form: boolean
-    formType: 'login' | 'signup'
-    cart: CartItem[]
-    fav: FavItem[]
-}
-
-const initialState: UserState = {
-    form: false,
-    formType: 'login',
-    cart: [],
-    fav: [],
-}
 
 export const createUser = createAsyncThunk(
     'users/createUser',
-    async (payload: User, thunkAPI) => {
+    async (payload, thunkAPI) => {
         try {
             const res = await axios.post(
                 'https://api.escuelajs.co/api/v1/users',
@@ -35,7 +20,7 @@ export const createUser = createAsyncThunk(
 
 export const loginUser = createAsyncThunk(
     'users/loginUser',
-    async (payload: UserLogin, thunkAPI) => {
+    async (payload, thunkAPI) => {
         try {
             const res = await axios.post(
                 'https://api.escuelajs.co/api/v1/auth/login',
@@ -57,74 +42,96 @@ export const loginUser = createAsyncThunk(
     }
 )
 
-export const updateUser = createAsyncThunk<User, User, { rejectValue: string }>(
+export const updateUser = createAsyncThunk(
     'users/updateUser',
-    async (payload: User, thunkAPI) => {
+    async (payload: any, thunkAPI) => {
         try {
-            const res = await axios.put<User>(
+            const res = await axios.put(
                 `https://api.escuelajs.co/api/v1/users/${payload.id}`,
                 payload
             )
             return res.data
-        } catch (error: any) {
+        } catch (error) {
             console.log(error)
-            return thunkAPI.rejectWithValue(error.message) //Reject with a string, and not an error.
+            return thunkAPI.rejectWithValue(error)
         }
     }
 )
-
 const userSlice = createSlice({
     name: 'user',
-    initialState,
+    initialState: {
+        currentUser: false,
+        cart: [],
+        fav: [],
+        isLoading: false,
+        formType: 'signup',
+        showForm: false,
+    },
     reducers: {
-        addItemToCart: (state, action: PayloadAction<CartItem>) => {
-            const existingItemIndex = state.cart.findIndex(
-                (item) => item.id === action.payload.id
-            )
+        addItemToCart: (state, action) => {
+            let newCart: any = [...state.cart]
+            const found = state.cart.find(({ id }) => id === action.payload.id)
+            console.log(action)
+            console.log(action.payload)
 
-            if (existingItemIndex !== -1) {
-                state.cart[existingItemIndex].quantity +=
-                    action.payload.quantity
-            } else {
-                state.cart.push({ ...action.payload })
-            }
-        },
-        removeItemFromCart: (state, action: PayloadAction<number>) => {
-            state.cart = state.cart
-                .map((item: any) => {
-                    if (item.id === action.payload && item.quantity > 1) {
-                        return { ...item, quantity: item.quantity - 1 }
-                    }
-                    return item
+            if (found) {
+                newCart = newCart.map((item: any) => {
+                    return item.id === action.payload.id
+                        ? {
+                              ...item,
+                              quantity:
+                                  action.payload.quantity || item.quantity + 1,
+                          }
+                        : item
                 })
-                .filter(
-                    (item) => item.id !== action.payload || item.quantity > 0
-                )
+            } else newCart.push({ ...action.payload, quantity: 1 })
+
+            state.cart = newCart
         },
-        addItemToFav: (state, action: PayloadAction<FavItem>) => {
-            const existingItemIndex = state.fav.findIndex(
-                (item) => item.id === action.payload.id
-            )
-            if (existingItemIndex === -1) {
-                state.fav.push(action.payload)
-            }
+        removeItemFromCart: (state, action) => {
+            let newCart: any = [...state.cart]
+
+            newCart = newCart.map((item: any) => {
+                return item.id === action.payload.id
+                    ? {
+                          ...item,
+                          quantity: item.quantity - 1,
+                      }
+                    : item
+            })
+
+            state.cart = newCart
         },
-        removeItemFromFav: (state, action: PayloadAction<number>) => {
-            state.fav = state.fav.filter(
-                (item: any) => item.id !== action.payload
-            )
+        removeItemFromCartAll: (state, action) => {
+            state.cart = state.cart.filter(({ id }) => id !== action.payload.id)
         },
-        toggleForm: (state, action: PayloadAction<boolean>) => {
-            state.form = action.payload
+        addItemToFav: (state, action) => {
+            let newFav: any = state.fav
+
+            newFav.push({ ...action.payload, fav: true })
+
+            state.fav = newFav
         },
-        toggleFormType: (state, action: PayloadAction<'login' | 'signup'>) => {
+        removeItemFromFav: (state, action) => {
+            state.fav = state.fav.filter(({ id }) => id !== action.payload.id)
+        },
+        toggleForm: (state, action) => {
+            state.showForm = action.payload
+        },
+        toggleFormType: (state, action) => {
             state.formType = action.payload
         },
-        removeItemFromCartAll: (state, action: PayloadAction<number>) => {
-            state.cart = state.cart.filter(
-                (item: any) => item.id !== action.payload
-            )
-        },
+    },
+    extraReducers: (builder) => {
+        builder.addCase(createUser.fulfilled, (state, action) => {
+            state.currentUser = action.payload
+        })
+        builder.addCase(loginUser.fulfilled, (state, action) => {
+            state.currentUser = action.payload
+        })
+        builder.addCase(updateUser.fulfilled, (state, action) => {
+            state.currentUser = action.payload
+        })
     },
 })
 

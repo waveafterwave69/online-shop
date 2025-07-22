@@ -19,7 +19,6 @@ const BurgerOpen: React.FC = () => {
 
     return (
         <>
-            {' '}
             {isOpen && (
                 <>
                     <div className={styles.menu}>

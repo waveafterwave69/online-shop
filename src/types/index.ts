@@ -31,6 +31,7 @@ export interface CartItem {
     images: string
     title: string
     price: number
+    name?: string
 }
 
 export interface FavItem {

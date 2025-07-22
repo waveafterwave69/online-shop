@@ -18,19 +18,17 @@ const Categories: React.FC<CategoriesProps> = ({
     return (
         <>
             <section className={styles.categories}>
-                {title && <h2 className={styles.categories__title}>{title}</h2>}
+                <h2 className={styles.categories__title}>{title}</h2>
                 <ul className={styles.categories__list}>
-                    {list.map((category) => (
-                        <li className={styles.list__item} key={category.id}>
-                            <Link to={`/categories/${category.id}`}>
+                    {list.map(({ id, name, image }) => (
+                        <li className={styles.list__item} key={id}>
+                            <Link to={`/categories/${id}`}>
                                 <img
-                                    src={category.image}
-                                    alt={category.name}
+                                    src={image}
+                                    alt="product"
                                     className={styles.item__image}
                                 />
-                                <h3 className={styles.item__title}>
-                                    {category.name}
-                                </h3>
+                                <h3 className={styles.item__title}>{name}</h3>
                             </Link>
                         </li>
                     ))}

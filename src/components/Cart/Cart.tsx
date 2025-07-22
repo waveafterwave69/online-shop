@@ -14,7 +14,7 @@ const Cart: React.FC = () => {
         setCart(el, el.quantity + 1)
     }
 
-    function setItemMinus(el: CartItem) {
+    const setItemMinus = (el: CartItem) => {
         setCart(el, el.quantity - 1)
     }
 

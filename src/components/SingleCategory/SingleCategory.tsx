@@ -5,6 +5,7 @@ import useCategory from '../../hooks/useCategory'
 
 const SingleCategory: React.FC = () => {
     const {
+        defaultParams,
         hangleChange,
         handleSubmit,
         cat,
@@ -14,7 +15,6 @@ const SingleCategory: React.FC = () => {
         data,
         setParams,
         setValues,
-        defaultParams,
     } = useCategory()
 
     return (

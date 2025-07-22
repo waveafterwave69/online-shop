@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { useGetProductsQuery } from '../store/api/apiSlice'
+import { CartItem } from '../types'
 
 interface FilterValues {
     title: string
@@ -58,7 +59,7 @@ const useCategory = (): UseCategoryReturn => {
     useEffect(() => {
         if (!id || !list) return
 
-        const { name } = list.find((item: any) => item.id === id)
+        const { name } = list.find((item: CartItem) => item.id === id * 1)
 
         setCat(name)
     }, [list, id])

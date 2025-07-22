@@ -3,7 +3,7 @@ import axios from 'axios'
 import { Category } from '../../types'
 
 interface CategoriesState {
-    list: Category[]
+    list: any
     isLoading: boolean
 }
 
@@ -33,7 +33,8 @@ const categoriesSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(getCategories.pending, (state) => {
+        builder.addCase(getCategories.pending, (state, action) => {
+            state.list = action.payload
             state.isLoading = true
         })
         builder.addCase(
