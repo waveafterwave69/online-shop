@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router'
 import { useGetProductQuery } from '../store/api/apiSlice'
+import { useEffect, useState } from 'react'
 import {
     addItemToCart,
     addItemToFav,
@@ -40,6 +40,7 @@ interface UseSingleCategoryReturn {
     handleFavMinus: () => void
     handleCartMinus: () => void
     cart: boolean
+    setImg: any
 }
 
 const useSingleCategory = (): UseSingleCategoryReturn => {
@@ -127,6 +128,7 @@ const useSingleCategory = (): UseSingleCategoryReturn => {
         handleFavMinus,
         handleCartMinus,
         cart,
+        setImg,
     }
 }
 

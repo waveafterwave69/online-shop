@@ -12,6 +12,9 @@ const SingleCategory: React.FC = () => {
         isLoading,
         isSuccess,
         data,
+        setParams,
+        setValues,
+        defaultParams,
     } = useCategory()
 
     return (
@@ -43,7 +46,15 @@ const SingleCategory: React.FC = () => {
                 ) : !isSuccess || !data.length ? (
                     <div className={styles.back}>
                         <span className={styles.noRes}>No results</span>
-                        <button className={styles.noResButton}>Reset</button>
+                        <button
+                            className={styles.noResButton}
+                            onClick={() => {
+                                setParams(defaultParams)
+                                setValues(defaultParams)
+                            }}
+                        >
+                            Reset
+                        </button>
                     </div>
                 ) : (
                     <Products

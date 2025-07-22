@@ -3,12 +3,6 @@ import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { useGetProductsQuery } from '../store/api/apiSlice'
 
-interface Category {
-    id: number
-    name: string
-    image: string
-}
-
 interface FilterValues {
     title: string
     price_min: number
@@ -28,13 +22,13 @@ interface UseCategoryReturn {
     isLoading: boolean
     isSuccess: boolean
     data: any
+    setParams: any
+    setValues: any
 }
 
 const useCategory = (): UseCategoryReturn => {
-    const { id } = useParams<{ id?: string }>()
-    const { list } = useSelector((state: any) => state.categories) as {
-        list: Category[]
-    }
+    const { id } = useParams()
+    const { list } = useSelector(({ categories }: any) => categories)
 
     const defaultValues: FilterValues = {
         title: '',
@@ -54,7 +48,7 @@ const useCategory = (): UseCategoryReturn => {
     useEffect(() => {
         if (!id) return
 
-        setParams((prevState) => ({ ...prevState, categoryId: id }))
+        setParams({ ...defaultParams, categoryId: id })
     }, [id])
 
     useEffect(() => {
@@ -64,13 +58,9 @@ const useCategory = (): UseCategoryReturn => {
     useEffect(() => {
         if (!id || !list) return
 
-        const category = list.find((item) => item.id === Number(id))
+        const { name } = list.find((item: any) => item.id === id)
 
-        if (category) {
-            setCat(category.name)
-        } else {
-            setCat('')
-        }
+        setCat(name)
     }, [list, id])
 
     const { data, isLoading, isSuccess } = useGetProductsQuery(params)
@@ -94,6 +84,8 @@ const useCategory = (): UseCategoryReturn => {
         isLoading,
         isSuccess,
         data,
+        setParams,
+        setValues,
     }
 }
 

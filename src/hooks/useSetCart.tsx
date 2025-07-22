@@ -1,27 +1,18 @@
 import { useDispatch } from 'react-redux'
-import {
-    addItemToCart,
-    removeItemFromCart,
-    removeItemFromCartAll,
-} from '../store/slices/userSlice'
-import { CartItem } from '../types'
+import { addItemToCart, removeItemFromCartAll } from '../store/slices/userSlice'
 
 const useSetCart = () => {
     const dispatch = useDispatch()
 
-    const setCart = (item: CartItem, quantity: number) => {
-        dispatch(addItemToCart({ ...item, quantity }))
+    const setCart = (item: any, quantity: any) => {
+        if (quantity > 0) {
+            dispatch(addItemToCart({ ...item, quantity }))
+        } else {
+            dispatch(removeItemFromCartAll(item))
+        }
     }
 
-    const removeItem = (item: CartItem | any) => {
-        dispatch(removeItemFromCartAll(item))
-    }
-
-    const removeItemOne = (item: CartItem | any) => {
-        dispatch(removeItemFromCart(item))
-    }
-
-    return { setCart, removeItem, removeItemOne }
+    return { setCart }
 }
 
 export default useSetCart

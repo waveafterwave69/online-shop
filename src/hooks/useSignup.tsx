@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { createUser, toggleFormType } from '../store/slices/userSlice'
+import {
+    createUser,
+    toggleFormType,
+    toggleForm,
+} from '../store/slices/userSlice'
 
 interface UseSignupReturn {
     showForm: boolean
@@ -12,10 +16,11 @@ interface UseSignupReturn {
         avatar: string
     }
     handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-    toggleForm: () => void
+    toggleForm: any
+    toggleFormToSign: any
 }
 
-const useSignup = (closeForm: () => void): UseSignupReturn => {
+const useSignup = (): UseSignupReturn => {
     const { showForm } = useSelector((state: any) => state.user)
 
     const dispatch = useDispatch<any>()
@@ -33,8 +38,7 @@ const useSignup = (closeForm: () => void): UseSignupReturn => {
         passwordError: '',
     })
 
-    const toggleForm = () => {
-        setErrors((prev) => prev)
+    const toggleFormToSign = () => {
         dispatch(toggleFormType('login'))
     }
 
@@ -51,7 +55,7 @@ const useSignup = (closeForm: () => void): UseSignupReturn => {
 
         if (!errors.nameError && !errors.emailError && !errors.passwordError) {
             dispatch(createUser(values))
-            closeForm()
+            dispatch(toggleForm(false))
         }
     }
 
@@ -66,7 +70,14 @@ const useSignup = (closeForm: () => void): UseSignupReturn => {
         }
     }, [showForm])
 
-    return { showForm, handleSubmit, values, handleChange, toggleForm }
+    return {
+        showForm,
+        handleSubmit,
+        values,
+        handleChange,
+        toggleForm,
+        toggleFormToSign,
+    }
 }
 
 export default useSignup

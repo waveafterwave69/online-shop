@@ -17,6 +17,7 @@ const SingleProduct: React.FC = () => {
         needFav,
         handleFav,
         fav,
+        setImg,
         handleSize,
         handleFavMinus,
         handleCartMinus,

@@ -19,37 +19,39 @@ const Favorites: React.FC = () => {
         <>
             <section className={styles.cart}>
                 <ul className={styles.cart__list}>
-                    {fav.map((el: FavItem) => (
-                        <li className={styles.cart__item} key={el.id}>
-                            <div className={styles.item__text}>
-                                <Link to={`/products/${el.id}`}>
-                                    <img
-                                        src={el.images[0]}
-                                        alt={el.title}
-                                        className={styles.item__img}
-                                    />
-                                </Link>
+                    {fav.map((el) => (
+                        <>
+                            <li className={styles.cart__item} key={el.id}>
+                                <div className={styles.item__text}>
+                                    <Link to={`../products/${el.id}`}>
+                                        <img
+                                            src={el.images[0]}
+                                            alt="img"
+                                            className={styles.item__img}
+                                        />
+                                    </Link>
 
-                                <div className={styles.text__text}>
-                                    <h1>{el.title}</h1>
-                                    <h3>{el.price}$</h3>
+                                    <div className={styles.text__text}>
+                                        <h1>{el.title}</h1>
+                                        <h3>{el.price}$</h3>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className={styles.item__buttons}>
-                                <button
-                                    style={{ padding: '8px' }}
-                                    onClick={() => deleteItem(el)}
-                                >
-                                    <img
-                                        src={bin}
-                                        style={{
-                                            width: '20px',
-                                        }}
-                                        alt="delete"
-                                    />
-                                </button>
-                            </div>
-                        </li>
+                                <div className={styles.item__buttons}>
+                                    <button
+                                        style={{ padding: '8px' }}
+                                        onClick={() => deleteItem(el)}
+                                    >
+                                        <img
+                                            src={bin}
+                                            style={{
+                                                width: '20px',
+                                            }}
+                                            alt="delete"
+                                        />
+                                    </button>
+                                </div>
+                            </li>
+                        </>
                     ))}
                 </ul>
             </section>
