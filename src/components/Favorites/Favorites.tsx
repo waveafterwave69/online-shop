@@ -11,7 +11,7 @@ const Favorites: React.FC = () => {
     }
     const dispatch = useDispatch()
 
-    const deleteItem = (el: any) => {
+    const deleteItem = (el: FavItem) => {
         dispatch(removeItemFromFav(el))
     }
 
