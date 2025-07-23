@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { useGetProductsQuery } from '../store/api/apiSlice'
-import { CartItem } from '../types'
+import { CartItem, Product } from '../types'
 
 interface FilterValues {
     title: string
@@ -22,9 +22,9 @@ interface UseCategoryReturn {
     values: FilterValues
     isLoading: boolean
     isSuccess: boolean
-    data: any
-    setParams: any
-    setValues: any
+    data: Product[]
+    setParams: (params: FilterParams) => void
+    setValues: (params: FilterParams) => void
 }
 
 const useCategory = (): UseCategoryReturn => {

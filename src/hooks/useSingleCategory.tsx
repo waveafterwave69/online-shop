@@ -27,7 +27,7 @@ interface UseSingleCategoryReturn {
     handleFavMinus: () => void
     handleCartMinus: () => void
     cart: boolean
-    setImg: any
+    setImg: React.Dispatch<React.SetStateAction<number>>
 }
 
 const useSingleCategory = (): UseSingleCategoryReturn => {

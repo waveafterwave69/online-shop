@@ -4,8 +4,8 @@ import { loginUser, toggleFormType } from '../store/slices/userSlice'
 
 interface UseLoginReturn {
     toggleForm: () => void
-    handleChange: (e: any) => void
-    handleSubmit: (e: any) => void
+    handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+    handleSubmit: (e: React.FormEvent) => void
     showForm: boolean
     values: {
         email: string
@@ -27,11 +27,11 @@ const useLogin = (): UseLoginReturn => {
         dispatch(toggleFormType('signup'))
     }
 
-    const handleChange = (e: any) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValues({ ...values, [e.target.name]: e.target.value })
     }
 
-    const handleSubmit = (e: any) => {
+    const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
 
         const isNotEmpty = Object.values(values).every((val) => val)
@@ -39,7 +39,6 @@ const useLogin = (): UseLoginReturn => {
         if (!isNotEmpty) return
 
         dispatch(loginUser(values))
-        // closeForm()
     }
 
     useEffect(() => {

@@ -16,9 +16,15 @@ interface UseSignupReturn {
         avatar: string
     }
     handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-    toggleForm: any
-    toggleFormToSign: any
-    setErrors: any
+    toggleForm: (params: boolean) => void
+    toggleFormToSign: () => void
+    setErrors: React.Dispatch<
+        React.SetStateAction<{
+            nameError: string
+            emailError: string
+            passwordError: string
+        }>
+    >
 }
 
 const useSignup = (): UseSignupReturn => {

@@ -1,9 +1,43 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
+import { Product } from '../../types'
+
+interface UserPayload {
+    id?: number
+    name: string
+    email: string
+    password: string
+    avatar: string
+}
+
+interface loginUserPayload {
+    email: string
+    password: string
+}
+
+interface Cart {
+    quantity: number
+    id: number
+    currentUser: boolean
+    cart: never[]
+    fav: never[]
+    isLoading: boolean
+    formType: string
+    showForm: boolean
+}
+
+interface initialState {
+    currentUser: boolean
+    cart: Cart[] | never[]
+    fav: Product[] | never[]
+    isLoading: boolean
+    formType: 'signup' | 'login'
+    showForm: boolean
+}
 
 export const createUser = createAsyncThunk(
     'users/createUser',
-    async (payload, thunkAPI) => {
+    async (payload: UserPayload, thunkAPI) => {
         try {
             const res = await axios.post(
                 'https://api.escuelajs.co/api/v1/users',
@@ -20,7 +54,7 @@ export const createUser = createAsyncThunk(
 
 export const loginUser = createAsyncThunk(
     'users/loginUser',
-    async (payload, thunkAPI) => {
+    async (payload: loginUserPayload, thunkAPI) => {
         try {
             const res = await axios.post(
                 'https://api.escuelajs.co/api/v1/auth/login',
@@ -44,7 +78,7 @@ export const loginUser = createAsyncThunk(
 
 export const updateUser = createAsyncThunk(
     'users/updateUser',
-    async (payload: any, thunkAPI) => {
+    async (payload: UserPayload, thunkAPI) => {
         try {
             const res = await axios.put(
                 `https://api.escuelajs.co/api/v1/users/${payload.id}`,
@@ -57,25 +91,26 @@ export const updateUser = createAsyncThunk(
         }
     }
 )
+
+const initialState: initialState = {
+    currentUser: false,
+    cart: [],
+    fav: [],
+    isLoading: false,
+    formType: 'signup',
+    showForm: false,
+}
+
 const userSlice = createSlice({
     name: 'user',
-    initialState: {
-        currentUser: false,
-        cart: [],
-        fav: [],
-        isLoading: false,
-        formType: 'signup',
-        showForm: false,
-    },
+    initialState,
     reducers: {
         addItemToCart: (state, action) => {
-            let newCart: any = [...state.cart]
+            let newCart: Cart[] = [...state.cart]
             const found = state.cart.find(({ id }) => id === action.payload.id)
-            console.log(action)
-            console.log(action.payload)
 
             if (found) {
-                newCart = newCart.map((item: any) => {
+                newCart = newCart.map((item: Cart) => {
                     return item.id === action.payload.id
                         ? {
                               ...item,
@@ -89,9 +124,9 @@ const userSlice = createSlice({
             state.cart = newCart
         },
         removeItemFromCart: (state, action) => {
-            let newCart: any = [...state.cart]
+            let newCart: Cart[] = [...state.cart]
 
-            newCart = newCart.map((item: any) => {
+            newCart = newCart.map((item: Cart) => {
                 return item.id === action.payload.id
                     ? {
                           ...item,
@@ -106,7 +141,7 @@ const userSlice = createSlice({
             state.cart = state.cart.filter(({ id }) => id !== action.payload.id)
         },
         addItemToFav: (state, action) => {
-            let newFav: any = state.fav
+            let newFav: Product[] = state.fav
 
             newFav.push({ ...action.payload, fav: true })
 

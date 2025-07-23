@@ -21,8 +21,8 @@ interface UseMenuReturn {
     isLoading: boolean
     totalCountOfCart: number
     totalCountOfFav: number
-    setOpen: any
-    currentUser: any
+    setOpen: () => void
+    currentUser: () => void
 }
 
 const useMenu = (): UseMenuReturn => {

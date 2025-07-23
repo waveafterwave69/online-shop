@@ -17,7 +17,7 @@ export const getCategories = createAsyncThunk<
             'https://api.escuelajs.co/api/v1/categories'
         )
         return res.data
-    } catch (error: any) {
+    } catch (error) {
         console.log(error)
         return thunkAPI.rejectWithValue(error)
     }
